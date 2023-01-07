@@ -6,7 +6,7 @@
 /*   By: sawang <sawang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 15:59:53 by sawang            #+#    #+#             */
-/*   Updated: 2023/01/07 19:25:58 by sawang           ###   ########.fr       */
+/*   Updated: 2023/01/07 19:56:41 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int32_t	main(void)
 
 	/*** Testing Isometric Projection ***/
 	int32_t x = 0;
-	int32_t y = 0;
+	int32_t y = 500;
 	int32_t z = 0;
 	uint32_t u = u_axis(x, y);
 	uint16_t v = v_ordinate(x, y, z);
