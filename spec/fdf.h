@@ -6,7 +6,7 @@
 /*   By: sawang <sawang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 18:27:31 by sawang            #+#    #+#             */
-/*   Updated: 2023/01/07 18:59:06 by sawang           ###   ########.fr       */
+/*   Updated: 2023/01/07 19:25:46 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 # include "MLX42.h"
 
 //Isometric Projection
-uint32_t	u_axis(int32_t x, int32_t y, int32_t z);
+uint32_t	u_axis(int32_t x, int32_t y);
 uint32_t	v_ordinate(int32_t x, int32_t y, int32_t z);
 
 #endif

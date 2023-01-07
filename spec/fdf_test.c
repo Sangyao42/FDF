@@ -6,11 +6,11 @@
 /*   By: sawang <sawang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 15:59:53 by sawang            #+#    #+#             */
-/*   Updated: 2023/01/07 19:00:55 by sawang           ###   ########.fr       */
+/*   Updated: 2023/01/07 19:25:58 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
- #include "../MLX42/include/MLX42/MLX42.h"
+// #include "../MLX42/include/MLX42/MLX42.h"
 // #include <stdlib.h>
 // #include <stdio.h>
 // #include <unistd.h>
@@ -33,7 +33,7 @@ int32_t	main(void)
 	int32_t x = 0;
 	int32_t y = 0;
 	int32_t z = 0;
-	uint32_t u = u_axis(x, y, z);
+	uint32_t u = u_axis(x, y);
 	uint16_t v = v_ordinate(x, y, z);
 	mlx_put_pixel(g_img, u, v, 0x00FF00FF);
 	// mlx_put_pixel(g_img, WIDTH / 2, HEIGHT / 2, 0xFF0000FF);

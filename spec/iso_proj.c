@@ -6,13 +6,13 @@
 /*   By: sawang <sawang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 18:21:30 by sawang            #+#    #+#             */
-/*   Updated: 2023/01/07 18:53:05 by sawang           ###   ########.fr       */
+/*   Updated: 2023/01/07 19:25:35 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-uint32_t	u_axis(int32_t x, int32_t y, int32_t z)
+uint32_t	u_axis(int32_t x, int32_t y)
 {
 	uint32_t	u;
 	int32_t		u_org;
