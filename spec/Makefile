@@ -3,6 +3,7 @@ CC = gcc
 CFLAGS = -Wall -Werror -Wextra
 TEST = fdf_test.c
 SRCS = iso_proj.c\
+       draw_line.c\
 # OBJS = $(SRCS:.c=.o)
 HEADER = -I ../MLX42/include/MLX42/
 LIBMLX = "../MLX42/"
