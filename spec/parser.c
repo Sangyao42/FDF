@@ -6,23 +6,23 @@
 /*   By: sawang <sawang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 20:43:07 by sawang            #+#    #+#             */
-/*   Updated: 2023/01/14 16:40:47 by sawang           ###   ########.fr       */
+/*   Updated: 2023/01/14 16:44:37 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include "fdf.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <stddef.h>
+#include "fdf.h"
+// #include <stdio.h>
+// #include <stdlib.h>
+// #include <stddef.h>
 
-typedef struct s_linelist
-{
-	int32_t				*line_array;
-	struct s_linelist	*next;
-}					t_linelist;
+// typedef struct s_linelist
+// {
+// 	int32_t				*line_array;
+// 	struct s_linelist	*next;
+// }					t_linelist;
 
-char	*get_int(char *str, int32_t *n);
-char	*remove_color_info(char *str);
+// char	*get_int(char *str, int32_t *n);
+// char	*remove_color_info(char *str);
 
 unsigned int	check_width(char *str)
 {
@@ -102,44 +102,44 @@ char	*remove_color_info(char *str)
 	return (str);
 }
 
-int	main(void)
-{
-	char	*str1 = " 0,0xff 0,0xff 1,0xff 0,0xff 5,0xff00 3,0xff 5,0xff00    ";
-	int		width1 = check_width(str1);
-	printf("%d\n", width1);
+// int	main(void)
+// {
+// 	char	*str1 = " 0,0xff 0,0xff 1,0xff 0,0xff 5,0xff00 3,0xff 5,0xff00    ";
+// 	int		width1 = check_width(str1);
+// 	printf("%d\n", width1);
 
-	t_linelist	*line1;
-	line1 = get_int_array(str1, width1);
-	while (width1)
-	{
-		printf("test1: %d,\n", line1->line_array[7 - width1]);
-		width1--;
-	}
-	free(line1);
+// 	t_linelist	*line1;
+// 	line1 = get_int_array(str1, width1);
+// 	while (width1)
+// 	{
+// 		printf("test1: %d,\n", line1->line_array[7 - width1]);
+// 		width1--;
+// 	}
+// 	free(line1);
 
-	char	*str2 = " -100 -9 -8 -7 -6 -5 -4 -3 -2 -1 0 1    ";
-	int		width2 = check_width(str2);
-	printf("%d\n", width2);
-	t_linelist	*line2;
-	line2 = get_int_array(str2, width2);
-	while (width2)
-	{
-		printf("test2: %d,\n", line2->line_array[12 - width2]);
-		width2--;
-	}
-	free(line2);
+// 	char	*str2 = " -100 -9 -8 -7 -6 -5 -4 -3 -2 -1 0 1    ";
+// 	int		width2 = check_width(str2);
+// 	printf("%d\n", width2);
+// 	t_linelist	*line2;
+// 	line2 = get_int_array(str2, width2);
+// 	while (width2)
+// 	{
+// 		printf("test2: %d,\n", line2->line_array[12 - width2]);
+// 		width2--;
+// 	}
+// 	free(line2);
 
-	char	*str3 = "300 2 2 -1000 0 0 1 -2 -3 -1 3   0";
-	int		width3 = check_width(str3);
-	printf("%d\n", width3);
-	t_linelist	*line3;
-	line3 = get_int_array(str3, width3);
-	while (width3)
-	{
-		printf("test3: %d,\n", line3->line_array[12 - width3]);
-		width3--;
-	}
-	free(line3);
+// 	char	*str3 = "300 2 2 -1000 0 0 1 -2 -3 -1 3   0";
+// 	int		width3 = check_width(str3);
+// 	printf("%d\n", width3);
+// 	t_linelist	*line3;
+// 	line3 = get_int_array(str3, width3);
+// 	while (width3)
+// 	{
+// 		printf("test3: %d,\n", line3->line_array[12 - width3]);
+// 		width3--;
+// 	}
+// 	free(line3);
 
-	return (0);
-}
+// 	return (0);
+// }
