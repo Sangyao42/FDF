@@ -6,7 +6,7 @@
 /*   By: sawang <sawang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 20:43:07 by sawang            #+#    #+#             */
-/*   Updated: 2023/01/14 16:44:37 by sawang           ###   ########.fr       */
+/*   Updated: 2023/01/16 19:36:42 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,36 @@
 
 // char	*get_int(char *str, int32_t *n);
 // char	*remove_color_info(char *str);
+
+static char	*get_int(char *str, int32_t *n)
+{
+	int	sign;
+
+	sign = 1;
+	if (*str == '-')
+	{
+			sign = -1;
+			str++;
+	}
+	while (*str >= '0' && *str <= '9')
+	{
+		*n = (10 * (*n) + (*str - '0'));
+		str++;
+	}
+	*n = sign * (*n);
+	return (str);
+}
+
+static char	*remove_color_info(char *str)
+{
+	while (*str)
+	{
+		if (*str != ' ' && (*(str + 1) == ' ' || *(str + 1) == '\0'))
+			return (str + 1);
+		str++;
+	}
+	return (str);
+}
 
 unsigned int	check_width(char *str)
 {
@@ -70,36 +100,6 @@ t_linelist	*get_int_array(char *str, unsigned int width)
 		i++;
 	}
 	return (line);
-}
-
-char	*get_int(char *str, int32_t *n)
-{
-	int	sign;
-
-	sign = 1;
-	if (*str == '-')
-	{
-			sign = -1;
-			str++;
-	}
-	while (*str >= '0' && *str <= '9')
-	{
-		*n = (10 * (*n) + (*str - '0'));
-		str++;
-	}
-	*n = sign * (*n);
-	return (str);
-}
-
-char	*remove_color_info(char *str)
-{
-	while (*str)
-	{
-		if (*str != ' ' && (*(str + 1) == ' ' || *(str + 1) == '\0'))
-			return (str + 1);
-		str++;
-	}
-	return (str);
 }
 
 // int	main(void)

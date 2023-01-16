@@ -5,6 +5,8 @@ FRAMEWORK = -framework Cocoa -framework OpenGL -framework IOKit
 TEST = fdf_test.c
 SRCS = iso_proj.c\
        draw_line.c\
+	   get_map.c\
+	   parser.c\
 # OBJS = $(SRCS:.c=.o)
 HEADER = -I ../MLX42/include/MLX42/ -I ../GNL/src/
 LIBMLX = "../MLX42/"
