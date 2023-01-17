@@ -6,7 +6,7 @@
 /*   By: sawang <sawang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 15:59:53 by sawang            #+#    #+#             */
-/*   Updated: 2023/01/17 16:42:55 by sawang           ###   ########.fr       */
+/*   Updated: 2023/01/17 18:00:35 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,20 +106,30 @@ int	main(void)
 	t_linelist	*map;
 	int			len;
 	int			i;
+	int height;
 
-	i = 0;
-	fd = open("../test_maps/10-2.fdf", O_RDONLY);
+	height = 0;
+	map = NULL;
+	fd = open("../test_maps/julia.fdf", O_RDONLY);
 	printf("fd: %d\n", fd);
 	map = get_map(fd);
+	// printf("%d,", ((map)->line_array[0]));
+	// printf("%d,", ((map)->line_array[9]));
+	// printf("%d,", (*map)->line_array[9]);
 	while (map)
 	{
-		len = sizeof(*(map->line_array)) / sizeof(map->line_array[0]);
-		printf("map width: %d\n", len);
+		// len = sizeof(*((map)->line_array)) / sizeof((map)->line_array[0]);
+		i = 0;
+		len = 10;
+		// printf("map width: %d\n", len);
 		while (i < len)
 		{
-			printf("%d,", map->line_array[i]);
+			printf("%d,", (map)->line_array[i]);
+			i++;
 		}
 		printf("\n");
-		map = map->next;
+		map = (map)->next;
+		height++;
 	}
+	printf("%d\n", height);
 }

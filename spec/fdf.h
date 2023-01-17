@@ -6,7 +6,7 @@
 /*   By: sawang <sawang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 18:27:31 by sawang            #+#    #+#             */
-/*   Updated: 2023/01/17 16:43:07 by sawang           ###   ########.fr       */
+/*   Updated: 2023/01/17 17:35:15 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ t_linelist		*get_map(int fd);
 // t_linelist	**get_map(int fd);
 
 //Parser for every line in the fdf line
-unsigned int	check_width(char *str);
+unsigned int	get_width(char *str);
 t_linelist		*get_int_array(char *str, unsigned int width);
 
 //Isometric Projection

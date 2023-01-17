@@ -6,7 +6,7 @@
 /*   By: sawang <sawang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 20:43:07 by sawang            #+#    #+#             */
-/*   Updated: 2023/01/16 19:36:42 by sawang           ###   ########.fr       */
+/*   Updated: 2023/01/17 17:35:00 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static char	*remove_color_info(char *str)
 	return (str);
 }
 
-unsigned int	check_width(char *str)
+unsigned int	get_width(char *str)
 {
 	unsigned int	width;
 
