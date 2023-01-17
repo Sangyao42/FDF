@@ -6,7 +6,7 @@
 /*   By: sawang <sawang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 15:59:53 by sawang            #+#    #+#             */
-/*   Updated: 2023/01/16 20:02:13 by sawang           ###   ########.fr       */
+/*   Updated: 2023/01/17 16:42:55 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,21 +103,23 @@
 int	main(void)
 {
 	int			fd;
-	t_linelist	**map;
+	t_linelist	*map;
 	int			len;
 	int			i;
 
 	i = 0;
 	fd = open("../test_maps/10-2.fdf", O_RDONLY);
+	printf("fd: %d\n", fd);
 	map = get_map(fd);
-	while (*map)
+	while (map)
 	{
-		len = sizeof(*(*map)->line_array) / sizeof((*map)->line_array[0]);
+		len = sizeof(*(map->line_array)) / sizeof(map->line_array[0]);
+		printf("map width: %d\n", len);
 		while (i < len)
 		{
-			printf("%d,", (*map)->line_array[i]);
+			printf("%d,", map->line_array[i]);
 		}
 		printf("\n");
-		*map = (*map)->next;
+		map = map->next;
 	}
 }
