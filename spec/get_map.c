@@ -6,7 +6,7 @@
 /*   By: sawang <sawang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 13:53:06 by sawang            #+#    #+#             */
-/*   Updated: 2023/01/17 17:59:28 by sawang           ###   ########.fr       */
+/*   Updated: 2023/01/17 18:31:03 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,22 +33,22 @@ static void	line_add_back(t_linelist **lst, t_linelist *new)
 	}
 }
 
-// void	line_add_next(t_linelist *lst, t_linelist *new)
-// {
-// 	// t_linelist	*current;
+// // void	line_add_next(t_linelist *lst, t_linelist *new)
+// // {
+// // 	// t_linelist	*current;
 
-// 	if (!new)
-// 		return ;
-// 	if (!lst)
-// 	{
-// 		lst = new;
-// 		return ;
-// 	}
-// 	lst->next = new;
-// 	return ;
-// }
+// // 	if (!new)
+// // 		return ;
+// // 	if (!lst)
+// // 	{
+// // 		lst = new;
+// // 		return ;
+// // 	}
+// // 	lst->next = new;
+// // 	return ;
+// // }
 
-static void	free_map(t_linelist *map)
+void	free_map(t_linelist *map)
 {
 	t_linelist	*current;
 
@@ -122,3 +122,36 @@ t_linelist	*get_map(int fd)
 // 	}
 // }
 
+// t_linelist	*create_a_node(char *str, unsigned int last_width)
+// {
+// 	if (last_width != get_width(str))
+// 		return (NULL);
+// 	return (get_int_array(str, last_width));
+// }
+
+// t_linelist	*get_map(int fd)
+// {
+// 	char			*str;
+// 	unsigned int	width;
+// 	t_linelist		*map;
+// 	t_linelist		*current;
+
+// 	str = get_next_line(fd);
+// 	if (!str)
+// 		return (NULL);
+// 	width = get_width(str);
+// 	map = create_a_node(str, width);
+// 	current = map;
+// 	if (!current)
+// 		return (NULL);
+// 	while (str)
+// 	{
+// 		current->next = create_a_node(str, width);
+// 		current = current->next;
+// 		if (!current)
+// 			return (free_map(map), NULL);
+// 		free(str);
+// 		str = get_next_line(fd);
+// 	}
+// 	return (map);
+// }

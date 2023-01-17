@@ -6,7 +6,7 @@
 /*   By: sawang <sawang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 15:59:53 by sawang            #+#    #+#             */
-/*   Updated: 2023/01/17 18:00:35 by sawang           ###   ########.fr       */
+/*   Updated: 2023/01/17 18:23:40 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,10 +109,10 @@ int	main(void)
 	int height;
 
 	height = 0;
-	map = NULL;
 	fd = open("../test_maps/julia.fdf", O_RDONLY);
 	printf("fd: %d\n", fd);
 	map = get_map(fd);
+	close(fd);
 	// printf("%d,", ((map)->line_array[0]));
 	// printf("%d,", ((map)->line_array[9]));
 	// printf("%d,", (*map)->line_array[9]);
@@ -131,5 +131,6 @@ int	main(void)
 		map = (map)->next;
 		height++;
 	}
+	// free_map(map);
 	printf("%d\n", height);
 }
