@@ -2,3 +2,7 @@
 	path = MLX42
 	url = https://github.com/codam-coding-college/MLX42.git
 
+[submodule "GNL"]
+	path = GNL
+	url = https://github.com/Sangyao42/get_next_line.git
+	branch = master
