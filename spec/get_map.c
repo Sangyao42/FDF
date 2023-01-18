@@ -5,153 +5,154 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sawang <sawang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/16 13:53:06 by sawang            #+#    #+#             */
-/*   Updated: 2023/01/17 18:31:03 by sawang           ###   ########.fr       */
+/*   Created: 2023/01/18 15:52:53 by sawang            #+#    #+#             */
+/*   Updated: 2023/01/18 22:28:55 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-#include <unistd.h>
-#include <stdio.h>
 
-static void	line_add_back(t_linelist **lst, t_linelist *new)
-{
-	t_linelist	*current;
-
-	if (!new)
-		return ;
-	if (!*lst)
-		*lst = new;
-	else
-	{
-		current = *lst;
-		while (current->next)
-		{
-			current = current->next;
-		}
-		current->next = new;
-	}
-}
-
-// // void	line_add_next(t_linelist *lst, t_linelist *new)
-// // {
-// // 	// t_linelist	*current;
-
-// // 	if (!new)
-// // 		return ;
-// // 	if (!lst)
-// // 	{
-// // 		lst = new;
-// // 		return ;
-// // 	}
-// // 	lst->next = new;
-// // 	return ;
-// // }
-
-void	free_map(t_linelist *map)
-{
-	t_linelist	*current;
-
-	if (!map)
-		return ;
-	current = map;
-	while (current)
-	{
-		current = current->next;
-		free((map)->line_array);
-		free(map);
-		map = current;
-	}
-	map = NULL;
-	// map = NULL;
-	return ;
-}
-
-t_linelist	*get_map(int fd)
-{
-	char			*str;
-	unsigned int	width;
-	t_linelist		*line;
-	t_linelist		*map;
-	// t_linelist		*current;
-
-	map = NULL;
-	str = get_next_line(fd);
-	if (str)
-		width = get_width(str);
-	while (str)
-	{
-		if (get_width(str) != width)
-			return (free(str), free_map(map), NULL);
-		line = get_int_array(str, width);
-		if (!line)
-			return (free(str), free_map(map), NULL);
-		// // printf("correct value:%d,\n", line->line_array[1]);
-		// current = line;
-		// // printf("and current value:%d.\n", current->line_array[1]);
-		// current = current->next;
-		line_add_back(&map, line);
-		free(str);
-		str = get_next_line(fd);
-	}
-	// printf("map value: %p,\n", map);
-	return (map);
-}
-// typedef struct s_list
-// {
-// 	void			*content;
-// 	struct s_list	*next;
-// }					t_list;
-
-// void	ft_lstadd_back(t_list **lst, t_list *new)
-// {
-// 	t_list	*current;
-
-// 	if (!new || !lst)
-// 		return ;
-// 	if (!*lst)
-// 		*lst = new;
-// 	else
-// 	{
-// 		current = *lst;
-// 		while (current->next)
-// 		{
-// 			current = current->next;
-// 		}
-// 		current->next = new;
-// 	}
-// }
-
-// t_linelist	*create_a_node(char *str, unsigned int last_width)
-// {
-// 	if (last_width != get_width(str))
-// 		return (NULL);
-// 	return (get_int_array(str, last_width));
-// }
-
-// t_linelist	*get_map(int fd)
+// int	**get_map_array(int fd)
 // {
 // 	char			*str;
 // 	unsigned int	width;
-// 	t_linelist		*map;
-// 	t_linelist		*current;
+// 	int				*line;
+// 	int				**map;
+// 	unsigned int	height;
 
-// 	str = get_next_line(fd);
-// 	if (!str)
-// 		return (NULL);
-// 	width = get_width(str);
-// 	map = create_a_node(str, width);
-// 	current = map;
-// 	if (!current)
-// 		return (NULL);
+// 	map = NULL;
+// 	if (str)
+// 	{
+// 		width = get_width(str);
+// 		height = 0;
+// 	}
 // 	while (str)
 // 	{
-// 		current->next = create_a_node(str, width);
-// 		current = current->next;
-// 		if (!current)
-// 			return (free_map(map), NULL);
+// 		if (get_width(str) != width)
+// 			return (free(str), free_map(map, height), NULL);
+// 		line = get_int_array(str, width);
+// 		if (!line)
+// 			return (free(str), free_map(map, height), NULL);
+// 		map = new_map(map, line, height);
+// 		if (!map)
+// 			return (free(str), free_map(map, height), NULL);
 // 		free(str);
 // 		str = get_next_line(fd);
+// 		height++;
+// 	}
+// 	return (map);
+// }
+static void	free_map(int **map, unsigned int height)
+{
+	int				**current;
+	unsigned int	i;
+
+	if (!map)
+		return ;
+	i = 0;
+	while (i < height)
+	{
+		current = map + i;
+		free(*current);
+		i++;
+	}
+	free(map);
+	map = NULL;
+	return ;
+}
+
+static int	**new_map(int **map, int *line, unsigned int height)
+{
+	unsigned int	j;
+	int				**map_new;
+
+	map_new = malloc((height + 1) * sizeof(int **));
+	if (!map_new)
+		return (free_map(map, height), NULL);
+	// printf("height: %d\n", height);
+	j = 0;
+	while (j < height)
+	{
+		*(map_new + j) = *(map + j);
+		j++;
+	}
+	*(map_new + j) = line;
+	free(map);
+	return (map_new);
+}
+
+int	get_map(int fd, int ***map)
+{
+	char			*str;
+	unsigned int	width;
+	int				*line;
+	unsigned int	height;
+
+	str = get_next_line(fd);
+	if (str)
+	{
+		width = get_width(str);
+		height = 0;
+	}
+	while (str)
+	{
+		if (get_width(str) != width)
+			return (free(str), free_map(*map, height), -1);
+		line = get_int_array(str, width);
+		if (!line)
+			return (free(str), free_map(*map, height), -1);
+		*map = new_map(*map, line, height++);
+		if (!*map)
+			return (free(str), -1);
+		free(str);
+		str = get_next_line(fd);
+	}
+	return (height);
+}
+
+// void	free_map(t_linelist *map)
+// {
+// 	t_linelist	*current;
+
+// 	if (!map)
+// 		return ;
+// 	current = map;
+// 	while (current)
+// 	{
+// 		current = current->next;
+// 		free((map)->line_array);
+// 		free(map);
+// 		map = current;
+// 	}
+// 	map = NULL;
+// 	return ;
+// }
+// int	**new_map(int **map, int *line, unsigned int height)
+// {
+// 	int				**temp;
+// 	unsigned int	j;
+
+// 	if (!map && height == 1)
+// 	{
+// 		map = malloc(height * sizeof(int **));
+// 		if (!map)
+// 			return (free(line), NULL);
+// 		*map = line;
+// 	}
+// 	else
+// 	{
+// 		temp = map;
+// 		free_map(map);
+// 		map = malloc(height * sizeof(int **));
+// 		if (!map)
+// 			return (free(line), NULL);
+// 		j = 1;
+// 		while (j < height)
+// 		{
+// 			*(map + j) = *(temp + j);
+// 			j++;
+// 		}
+// 		*(map + j) = line;
 // 	}
 // 	return (map);
 // }

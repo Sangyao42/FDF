@@ -6,7 +6,7 @@
 /*   By: sawang <sawang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 20:43:07 by sawang            #+#    #+#             */
-/*   Updated: 2023/01/17 17:35:00 by sawang           ###   ########.fr       */
+/*   Updated: 2023/01/18 17:01:39 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,28 +73,53 @@ unsigned int	get_width(char *str)
 	return (width);
 }
 
-t_linelist	*get_int_array(char *str, unsigned int width)
+// t_linelist	*get_int_array(char *str, unsigned int width)
+// {
+// 	t_linelist		*line;
+// 	unsigned int	i;
+
+// 	i = 0;
+// 	line = malloc(sizeof(t_linelist));
+// 	if (!line)
+// 		return (NULL);
+// 	line->next = NULL;
+// 	line->line_array = malloc(width * sizeof(int32_t));
+// 	if (!line->line_array)
+// 	{
+// 		free(line);
+// 		return (NULL);
+// 	}
+// 	while (*str && i < width)
+// 	{
+// 		line->line_array[i] = 0;
+// 		while (*str == ' ')
+// 			str++;
+// 		str = get_int(str, &line->line_array[i]);
+// 		if (*str == ',')
+// 			str = remove_color_info(str);
+// 		i++;
+// 	}
+// 	return (line);
+// }
+
+int	*get_int_array(char *str, unsigned int width)
 {
-	t_linelist		*line;
+	int				*line;
 	unsigned int	i;
 
 	i = 0;
-	line = malloc(sizeof(t_linelist));
+	line = malloc(width * sizeof(int32_t));
 	if (!line)
-		return (NULL);
-	line->next = NULL;
-	line->line_array = malloc(width * sizeof(int32_t));
-	if (!line->line_array)
 	{
 		free(line);
 		return (NULL);
 	}
 	while (*str && i < width)
 	{
-		line->line_array[i] = 0;
+		line[i] = 0;
 		while (*str == ' ')
 			str++;
-		str = get_int(str, &line->line_array[i]);
+		str = get_int(str, &line[i]);
 		if (*str == ',')
 			str = remove_color_info(str);
 		i++;
@@ -102,6 +127,24 @@ t_linelist	*get_int_array(char *str, unsigned int width)
 	return (line);
 }
 
+// int	*get_int_array(char *str, unsigned int width)
+// {
+// 	int				line[width];
+// 	unsigned int	i;
+
+// 	i = 0;
+// 	while (*str && i < width)
+// 	{
+// 		line[i] = 0;
+// 		while (*str == ' ')
+// 			str++;
+// 		str = get_int(str, &line[i]);
+// 		if (*str == ',')
+// 			str = remove_color_info(str);
+// 		i++;
+// 	}
+// 	return (line);
+// }
 // int	main(void)
 // {
 // 	char	*str1 = " 0,0xff 0,0xff 1,0xff 0,0xff 5,0xff00 3,0xff 5,0xff00    ";

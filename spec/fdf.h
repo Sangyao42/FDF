@@ -6,7 +6,7 @@
 /*   By: sawang <sawang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 18:27:31 by sawang            #+#    #+#             */
-/*   Updated: 2023/01/17 17:35:15 by sawang           ###   ########.fr       */
+/*   Updated: 2023/01/18 22:24:44 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,16 +24,11 @@
 # include <stdlib.h>
 # include <stddef.h>
 # include <math.h>
-#include <fcntl.h>
+# include <fcntl.h>
 # include "MLX42.h"
 # include "get_next_line.h"
 
-//Store the line read from fdf using linked list
-typedef struct s_linelist
-{
-	int32_t				*line_array;
-	struct s_linelist	*next;
-}					t_linelist;
+# include <stdio.h>
 
 //Struct for pixel
 typedef struct s_pixel
@@ -43,12 +38,13 @@ typedef struct s_pixel
 }				t_pixel;
 
 //Getting the whole map from fdf file
-t_linelist		*get_map(int fd);
+int				get_map(int fd, int ***map);
 // t_linelist	**get_map(int fd);
 
 //Parser for every line in the fdf line
 unsigned int	get_width(char *str);
-t_linelist		*get_int_array(char *str, unsigned int width);
+int				*get_int_array(char *str, unsigned int width);
+// t_linelist		*get_int_array(char *str, unsigned int width);
 
 //Isometric Projection
 // uint32_t	u_axis(int32_t x, int32_t y);
