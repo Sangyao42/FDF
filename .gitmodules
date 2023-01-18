@@ -4,3 +4,4 @@
 [submodule "GNL"]
 	path = GNL
 	url = https://github.com/Sangyao42/get_next_line.git
+	branch = master
