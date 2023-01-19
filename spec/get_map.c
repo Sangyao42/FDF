@@ -6,7 +6,7 @@
 /*   By: sawang <sawang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 15:52:53 by sawang            #+#    #+#             */
-/*   Updated: 2023/01/19 16:44:36 by sawang           ###   ########.fr       */
+/*   Updated: 2023/01/19 17:10:02 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,9 +90,7 @@ int	**get_map(int fd, unsigned int *width, unsigned int *height)
 	map = NULL;
 	str = get_next_line(fd);
 	if (str)
-	{
 		*width = get_width(str);
-	}
 	while (str)
 	{
 		if (get_width(str) != *width)
