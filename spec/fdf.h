@@ -6,7 +6,7 @@
 /*   By: sawang <sawang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 18:27:31 by sawang            #+#    #+#             */
-/*   Updated: 2023/01/18 22:24:44 by sawang           ###   ########.fr       */
+/*   Updated: 2023/01/19 16:24:37 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,9 @@ typedef struct s_pixel
 }				t_pixel;
 
 //Getting the whole map from fdf file
-int				get_map(int fd, int ***map);
+void	free_map(int **map, unsigned int height);
+int		**get_map(int fd, unsigned int *width, unsigned int *height);
+// int				get_map(int fd, int ***map);
 // t_linelist	**get_map(int fd);
 
 //Parser for every line in the fdf line

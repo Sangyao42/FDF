@@ -6,7 +6,7 @@
 /*   By: sawang <sawang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 15:52:53 by sawang            #+#    #+#             */
-/*   Updated: 2023/01/18 22:28:55 by sawang           ###   ########.fr       */
+/*   Updated: 2023/01/19 16:44:36 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@
 // 	}
 // 	return (map);
 // }
-static void	free_map(int **map, unsigned int height)
+void	free_map(int **map, unsigned int height)
 {
 	int				**current;
 	unsigned int	i;
@@ -81,34 +81,63 @@ static int	**new_map(int **map, int *line, unsigned int height)
 	return (map_new);
 }
 
-int	get_map(int fd, int ***map)
+int	**get_map(int fd, unsigned int *width, unsigned int *height)
 {
-	char			*str;
-	unsigned int	width;
-	int				*line;
-	unsigned int	height;
+	char	*str;
+	int		*line;
+	int		**map;
 
+	map = NULL;
 	str = get_next_line(fd);
 	if (str)
 	{
-		width = get_width(str);
-		height = 0;
+		*width = get_width(str);
 	}
 	while (str)
 	{
-		if (get_width(str) != width)
-			return (free(str), free_map(*map, height), -1);
-		line = get_int_array(str, width);
+		if (get_width(str) != *width)
+			return (free(str), free_map(map, *height), NULL);
+		line = get_int_array(str, *width);
 		if (!line)
-			return (free(str), free_map(*map, height), -1);
-		*map = new_map(*map, line, height++);
-		if (!*map)
-			return (free(str), -1);
+			return (free(str), free_map(map, *height), NULL);
+		map = new_map(map, line, *height);
+		if (!map)
+			return (free(str), NULL);
 		free(str);
 		str = get_next_line(fd);
+		(*height)++;
 	}
-	return (height);
+	return (map);
 }
+
+// int	get_map(int fd, int ***map)
+// {
+// 	char			*str;
+// 	unsigned int	width;
+// 	int				*line;
+// 	unsigned int	height;
+
+// 	str = get_next_line(fd);
+// 	if (str)
+// 	{
+// 		width = get_width(str);
+// 		height = 0;
+// 	}
+// 	while (str)
+// 	{
+// 		if (get_width(str) != width)
+// 			return (free(str), free_map(*map, height), -1);
+// 		line = get_int_array(str, width);
+// 		if (!line)
+// 			return (free(str), free_map(*map, height), -1);
+// 		*map = new_map(*map, line, height++);
+// 		if (!*map)
+// 			return (free(str), -1);
+// 		free(str);
+// 		str = get_next_line(fd);
+// 	}
+// 	return (height);
+// }
 
 // void	free_map(t_linelist *map)
 // {

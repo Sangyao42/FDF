@@ -1,6 +1,7 @@
 NAME = $(TEST:.c=.o)
 CC = gcc
 CFLAGS =  -fsanitize=address -g3 -Wall -Werror -Wextra
+BS = -D BUFERSIZE=100
 FRAMEWORK = -framework Cocoa -framework OpenGL -framework IOKit
 TEST = fdf_test.c
 SRCS = iso_proj.c\

@@ -6,12 +6,12 @@
 /*   By: sawang <sawang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 20:43:07 by sawang            #+#    #+#             */
-/*   Updated: 2023/01/18 17:01:39 by sawang           ###   ########.fr       */
+/*   Updated: 2023/01/19 17:06:26 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-// #include <stdio.h>
+#include <stdio.h>
 // #include <stdlib.h>
 // #include <stddef.h>
 
@@ -47,7 +47,7 @@ static char	*remove_color_info(char *str)
 {
 	while (*str)
 	{
-		if (*str != ' ' && (*(str + 1) == ' ' || *(str + 1) == '\0'))
+		if (*str != ' ' && (*(str + 1) == ' ' || *(str + 1) == '\n'))
 			return (str + 1);
 		str++;
 	}
@@ -65,7 +65,7 @@ unsigned int	get_width(char *str)
 			str++;
 		if (*str != '\0')
 		{
-			if (*str != ' ' && (*(str + 1) == ' ' || *(str + 1) == '\0'))
+			if (*str != ' ' && (*(str + 1) == ' ' || *(str + 1) == '\n'))
 				width++;
 			str++;
 		}
