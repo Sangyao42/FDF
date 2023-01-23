@@ -6,7 +6,7 @@
 /*   By: sawang <sawang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 15:59:53 by sawang            #+#    #+#             */
-/*   Updated: 2023/01/19 16:59:07 by sawang           ###   ########.fr       */
+/*   Updated: 2023/01/23 16:24:10 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ int	main(void)
 	unsigned int	i;
 	unsigned int	height;
 	unsigned int	width;
-	int				**map;
+	t_coord			**map;
 
 	width = 0;
 	height = 0;
@@ -123,11 +123,12 @@ int	main(void)
 		j = 0;
 		while (j < width)
 		{
-			printf("%d,", map[i][j]);
+			printf("%d,", map[i][j].z);
 			j++;
 		}
 		printf("\n");
 		i++;
 	}
 	free_map(map, height);
+	system("leaks ./fdf_test.o");
 }

@@ -6,7 +6,7 @@
 /*   By: sawang <sawang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 18:27:31 by sawang            #+#    #+#             */
-/*   Updated: 2023/01/19 16:24:37 by sawang           ###   ########.fr       */
+/*   Updated: 2023/01/23 15:52:50 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@
 # include <fcntl.h>
 # include "MLX42.h"
 # include "get_next_line.h"
-
 # include <stdio.h>
 
 //Struct for pixel
@@ -37,15 +36,34 @@ typedef struct s_pixel
 	int32_t	v;
 }				t_pixel;
 
+//struct for coordinates after calculate, eg: rotation
+typedef struct s_mid_pixel
+{
+	float	o;
+	float	p;
+	float	q;
+}				t_mid_pixel;
+
+//struct for three differnt coordinates: orgianl, after rotation, 2d coordinates
+typedef struct s_coord
+{
+	int				z;
+	t_mid_pixel		mid_pixel;
+	t_pixel			pixel;
+}				t_coord;
+
 //Getting the whole map from fdf file
-void	free_map(int **map, unsigned int height);
-int		**get_map(int fd, unsigned int *width, unsigned int *height);
+// void	free_map(int **map, unsigned int height);
+void			free_map(t_coord **map, unsigned int height);
+// int		**get_map(int fd, unsigned int *width, unsigned int *height);
+t_coord			**get_map(int fd, unsigned int *width, unsigned int *height);
 // int				get_map(int fd, int ***map);
 // t_linelist	**get_map(int fd);
 
 //Parser for every line in the fdf line
 unsigned int	get_width(char *str);
-int				*get_int_array(char *str, unsigned int width);
+// int				*get_int_array(char *str, unsigned int width);
+t_coord			*get_int_array(char *str, unsigned int width);
 // t_linelist		*get_int_array(char *str, unsigned int width);
 
 //Isometric Projection

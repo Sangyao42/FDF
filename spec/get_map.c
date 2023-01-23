@@ -6,7 +6,7 @@
 /*   By: sawang <sawang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 15:52:53 by sawang            #+#    #+#             */
-/*   Updated: 2023/01/19 17:10:02 by sawang           ###   ########.fr       */
+/*   Updated: 2023/01/23 15:28:50 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,9 @@
 // 	}
 // 	return (map);
 // }
-void	free_map(int **map, unsigned int height)
+void	free_map(t_coord **map, unsigned int height)
 {
-	int				**current;
+	t_coord			**current;
 	unsigned int	i;
 
 	if (!map)
@@ -61,12 +61,12 @@ void	free_map(int **map, unsigned int height)
 	return ;
 }
 
-static int	**new_map(int **map, int *line, unsigned int height)
+static t_coord	**new_map(t_coord **map, t_coord *line, unsigned int height)
 {
 	unsigned int	j;
-	int				**map_new;
+	t_coord			**map_new;
 
-	map_new = malloc((height + 1) * sizeof(int **));
+	map_new = malloc((height + 1) * sizeof(t_coord **));
 	if (!map_new)
 		return (free_map(map, height), NULL);
 	// printf("height: %d\n", height);
@@ -81,11 +81,11 @@ static int	**new_map(int **map, int *line, unsigned int height)
 	return (map_new);
 }
 
-int	**get_map(int fd, unsigned int *width, unsigned int *height)
+t_coord	**get_map(int fd, unsigned int *width, unsigned int *height)
 {
 	char	*str;
-	int		*line;
-	int		**map;
+	t_coord	*line;
+	t_coord	**map;
 
 	map = NULL;
 	str = get_next_line(fd);
