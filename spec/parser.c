@@ -6,7 +6,7 @@
 /*   By: sawang <sawang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 20:43:07 by sawang            #+#    #+#             */
-/*   Updated: 2023/01/23 15:24:39 by sawang           ###   ########.fr       */
+/*   Updated: 2023/01/24 16:44:54 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ static char	*remove_color_info(char *str)
 	return (str);
 }
 
-unsigned int	get_width(char *str)
+int	get_width(char *str)
 {
 	unsigned int	width;
 
@@ -137,7 +137,7 @@ unsigned int	get_width(char *str)
 // 	return (line);
 // }
 
-t_coord	*get_int_array(char *str, unsigned int width)
+t_coord	*get_int_array(char *str, int width)
 {
 	t_coord				*line;
 	unsigned int	i;

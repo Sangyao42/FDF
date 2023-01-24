@@ -6,7 +6,7 @@
 /*   By: sawang <sawang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 15:59:53 by sawang            #+#    #+#             */
-/*   Updated: 2023/01/23 16:24:10 by sawang           ###   ########.fr       */
+/*   Updated: 2023/01/24 19:47:29 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,10 +103,10 @@
 int	main(void)
 {
 	int				fd;
-	unsigned int	j;
-	unsigned int	i;
-	unsigned int	height;
-	unsigned int	width;
+	int	j;
+	int	i;
+	int	height;
+	int	width;
 	t_coord			**map;
 
 	width = 0;
@@ -114,9 +114,10 @@ int	main(void)
 	fd = open("../test_maps/pyramide.fdf", O_RDONLY);
 	printf("fd: %d\n", fd);
 	map = get_map(fd, &width, &height);
+	close(fd);
 	printf("hallo: height: %d\n", height);
 	printf("hallo: width: %d\n", width);
-	close(fd);
+	// map =
 	i = 0;
 	while (i < height)
 	{
@@ -129,6 +130,7 @@ int	main(void)
 		printf("\n");
 		i++;
 	}
+	// draw_map(map, &width, &height);
 	free_map(map, height);
 	system("leaks ./fdf_test.o");
 }

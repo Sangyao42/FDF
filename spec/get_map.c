@@ -6,7 +6,7 @@
 /*   By: sawang <sawang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 15:52:53 by sawang            #+#    #+#             */
-/*   Updated: 2023/01/23 15:28:50 by sawang           ###   ########.fr       */
+/*   Updated: 2023/01/24 16:25:55 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,10 @@
 // 	}
 // 	return (map);
 // }
-void	free_map(t_coord **map, unsigned int height)
+void	free_map(t_coord **map, int height)
 {
 	t_coord			**current;
-	unsigned int	i;
+	int	i;
 
 	if (!map)
 		return ;
@@ -61,9 +61,9 @@ void	free_map(t_coord **map, unsigned int height)
 	return ;
 }
 
-static t_coord	**new_map(t_coord **map, t_coord *line, unsigned int height)
+static t_coord	**new_map(t_coord **map, t_coord *line, int height)
 {
-	unsigned int	j;
+	int	j;
 	t_coord			**map_new;
 
 	map_new = malloc((height + 1) * sizeof(t_coord **));
@@ -81,7 +81,7 @@ static t_coord	**new_map(t_coord **map, t_coord *line, unsigned int height)
 	return (map_new);
 }
 
-t_coord	**get_map(int fd, unsigned int *width, unsigned int *height)
+t_coord	**get_map(int fd, int *width, int *height)
 {
 	char	*str;
 	t_coord	*line;
