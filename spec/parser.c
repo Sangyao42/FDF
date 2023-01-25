@@ -6,7 +6,7 @@
 /*   By: sawang <sawang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 20:43:07 by sawang            #+#    #+#             */
-/*   Updated: 2023/01/24 16:44:54 by sawang           ###   ########.fr       */
+/*   Updated: 2023/01/25 16:47:18 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,8 +139,8 @@ int	get_width(char *str)
 
 t_coord	*get_int_array(char *str, int width)
 {
-	t_coord				*line;
-	unsigned int	i;
+	t_coord	*line;
+	int		i;
 
 	i = 0;
 	line = malloc(width * sizeof(t_coord));

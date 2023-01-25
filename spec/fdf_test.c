@@ -6,7 +6,7 @@
 /*   By: sawang <sawang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 15:59:53 by sawang            #+#    #+#             */
-/*   Updated: 2023/01/24 19:47:29 by sawang           ###   ########.fr       */
+/*   Updated: 2023/01/25 17:41:30 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,16 +25,16 @@
 // 	return ;
 // }
 
-// int32_t	main(void)
-// {
-// 	mlx_t		*mlx;
-// 	mlx_image_t	*g_img;
+int32_t	main(void)
+{
+	mlx_t		*mlx;
+	mlx_image_t	*g_img;
 
-// 	mlx = mlx_init(WIDTH, HEIGHT, "FDF", true);
-// 	if (!mlx)
-// 		exit(EXIT_FAILURE);
-// 	g_img = mlx_new_image(mlx, WIDTH, HEIGHT);
-// 	mlx_image_to_window(mlx, g_img, 0, 0);
+	mlx = mlx_init(WIDTH, HEIGHT, "FDF", true);
+	if (!mlx)
+		exit(EXIT_FAILURE);
+	g_img = mlx_new_image(mlx, WIDTH, HEIGHT);
+	mlx_image_to_window(mlx, g_img, 0, 0);
 
 // 	/*** Testing Isometric Projection ***/
 // 	int32_t x = 0;
@@ -94,43 +94,61 @@
 // 	draw_line(g_img, p8, p4);
 // 	/************************/
 
-// 	mlx_loop(mlx);
-// 	mlx_delete_image(mlx, g_img);
-// 	mlx_terminate(mlx);
-// 	return (EXIT_SUCCESS);
-// }
-
-int	main(void)
-{
-	int				fd;
-	int	j;
-	int	i;
-	int	height;
-	int	width;
-	t_coord			**map;
+	/*** Testing draw map function ***/
+	int		fd;
+	int		height;
+	int		width;
+	t_coord	**map;
 
 	width = 0;
 	height = 0;
-	fd = open("../test_maps/pyramide.fdf", O_RDONLY);
+	fd = open("../test_maps/42.fdf", O_RDONLY);
 	printf("fd: %d\n", fd);
 	map = get_map(fd, &width, &height);
+	// printf("hallo: height: %d\n", height);
+	// printf("hallo: width: %d\n", width);
 	close(fd);
-	printf("hallo: height: %d\n", height);
-	printf("hallo: width: %d\n", width);
-	// map =
-	i = 0;
-	while (i < height)
-	{
-		j = 0;
-		while (j < width)
-		{
-			printf("%d,", map[i][j].z);
-			j++;
-		}
-		printf("\n");
-		i++;
-	}
-	// draw_map(map, &width, &height);
-	free_map(map, height);
-	system("leaks ./fdf_test.o");
+	draw(g_img, &map, &width, &height);
+	/************************/
+	mlx_loop(mlx);
+	mlx_delete_image(mlx, g_img);
+	mlx_terminate(mlx);
+	return (EXIT_SUCCESS);
 }
+
+// /*** Testing Isometric Projection ***/
+// int	main(void)
+// {
+// 	int				fd;
+// 	int	j;
+// 	int	i;
+// 	int	height;
+// 	int	width;
+// 	t_coord			**map;
+
+// 	width = 0;
+// 	height = 0;
+// 	fd = open("../test_maps/pyramide.fdf", O_RDONLY);
+// 	printf("fd: %d\n", fd);
+// 	map = get_map(fd, &width, &height);
+// 	close(fd);
+// 	printf("hallo: height: %d\n", height);
+// 	printf("hallo: width: %d\n", width);
+// 	// map =
+// 	i = 0;
+// 	while (i < height)
+// 	{
+// 		j = 0;
+// 		while (j < width)
+// 		{
+// 			printf("%d,", map[i][j].z);
+// 			j++;
+// 		}
+// 		printf("\n");
+// 		i++;
+// 	}
+// 	// draw_map(map, &width, &height);
+// 	free_map(map, height);
+// 	system("leaks ./fdf_test.o");
+// }
+// 	/************************/

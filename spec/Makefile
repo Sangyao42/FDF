@@ -8,6 +8,7 @@ SRCS = iso_proj.c\
        draw_line.c\
 	   get_map.c\
 	   parser.c\
+	   draw_map.c\
 # OBJS = $(SRCS:.c=.o)
 HEADER = -I ../MLX42/include/MLX42/ -I ../GNL/src/
 LIBMLX = "../MLX42/"
