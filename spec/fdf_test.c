@@ -6,7 +6,7 @@
 /*   By: sawang <sawang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 15:59:53 by sawang            #+#    #+#             */
-/*   Updated: 2023/01/25 17:41:30 by sawang           ###   ########.fr       */
+/*   Updated: 2023/01/26 15:19:03 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,8 +111,10 @@ int32_t	main(void)
 	draw(g_img, &map, &width, &height);
 	/************************/
 	mlx_loop(mlx);
+	free_map(map, height);
 	mlx_delete_image(mlx, g_img);
 	mlx_terminate(mlx);
+	system("leaks fdf_test.o");
 	return (EXIT_SUCCESS);
 }
 

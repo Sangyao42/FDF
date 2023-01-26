@@ -6,7 +6,7 @@
 /*   By: sawang <sawang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 18:27:31 by sawang            #+#    #+#             */
-/*   Updated: 2023/01/25 18:54:26 by sawang           ###   ########.fr       */
+/*   Updated: 2023/01/26 14:43:01 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,12 @@ typedef struct s_coord
 	t_mid_pixel		mid_pixel;
 	t_pixel			pixel;
 }				t_coord;
+
+typedef struct s_pixel_max
+{
+	int		u_max;
+	int		v_max;
+}				t_pixel_max;
 
 //Getting the whole map from fdf file
 // void	free_map(int **map, unsigned int height);

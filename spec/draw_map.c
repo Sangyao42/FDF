@@ -6,7 +6,7 @@
 /*   By: sawang <sawang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 16:40:33 by sawang            #+#    #+#             */
-/*   Updated: 2023/01/25 23:01:22 by sawang           ###   ########.fr       */
+/*   Updated: 2023/01/26 16:15:59 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,13 +72,15 @@ static t_pixel_max	get_max(t_coord **map, int *width, int *height)
 		while (i < *width)
 		{
 			if (abs(map[j][i].pixel.u - WIDTH / 2) > max.u_max)
-				max.u_max = abs(map[j][i].pixel.u - WIDTH / 2);
+				max.u_max = (float)abs(map[j][i].pixel.u - WIDTH / 2);
 			if (abs(map[j][i].pixel.v - HEIGHT / 2) > max.v_max)
-				max.v_max = abs(map[j][i].pixel.v - HEIGHT / 2);
+				max.v_max = (float)abs(map[j][i].pixel.v - HEIGHT / 2);
 			i++;
 		}
 		j++;
 	}
+	printf("u_max: %d\n", max.u_max);
+	printf("v_max: %d\n", max.v_max);
 	return (max);
 }
 
@@ -89,11 +91,9 @@ static float	get_scale_rate(t_coord **map, int *width, int *height)
 	t_pixel_max	max;
 
 	max = get_max(map, width, height);
-	printf("u_max: %d\n", max.u_max);
 	printf("test margin:%d\n", (WIDTH / 2) - (WIDTH / 10));
-	u_rate = (float)((WIDTH / 2) - (WIDTH / 10)) / max.u_max;
-	v_rate = (float)((HEIGHT / 2) - (HEIGHT / 10)) / max.v_max;
-	printf("rate: %f\n", u_rate);
+	u_rate = ((WIDTH / 2) - (WIDTH / 10)) / max.u_max;
+	v_rate = ((HEIGHT / 2) - (HEIGHT / 10)) / max.v_max;
 	if (u_rate < v_rate)
 		return (u_rate);
 	return (v_rate);
@@ -101,19 +101,22 @@ static float	get_scale_rate(t_coord **map, int *width, int *height)
 
 t_coord	**scale_map(t_coord **map, int *width, int *height)
 {
-	float	rate;
+	int		rate;
 	int		i;
 	int		j;
 
-	rate = get_scale_rate(map, width, height);
+	map = proj_map(map, width, height);
+	rate = roundf(get_scale_rate(map, width, height));
+	printf("rate: %d\n", rate);
 	j = 0;
 	while (j < *height)
 	{
 		i = 0;
 		while (i < *width)
 		{
-			map[j][i].pixel.u = map[j][i].pixel.u * 30;
-			map[j][i].pixel.v = map[j][i].pixel.v * 1.4;
+			map[j][i].mid_pixel.o = map[j][i].mid_pixel.o * rate;
+			map[j][i].mid_pixel.p = map[j][i].mid_pixel.p * rate;
+			map[j][i].mid_pixel.q = map[j][i].mid_pixel.q * rate;
 			i++;
 		}
 		j++;
@@ -135,17 +138,21 @@ void	draw_map(mlx_image_t *g_img, t_coord **map, int *width, int *height)
 			draw_line(g_img, map[j][i].pixel, map[j][i + 1].pixel);
 			draw_line(g_img, map[j][i].pixel, map[j + 1][i].pixel);
 			i++;
+			draw_line(g_img, map[j + 1][i].pixel, map[j][i].pixel);
 		}
 		j++;
 	}
-	draw_line(g_img, map[j][0].pixel, map[j][i].pixel);
-	draw_line(g_img, map[0][i].pixel, map[j][i].pixel);
+	while (i > 0)
+	{
+		draw_line(g_img, map[j][*width - 1 - i].pixel, map[j][*width - i].pixel);
+		i--;
+	}
 }
 
 void	draw(mlx_image_t *g_img, t_coord ***map, int *width, int *height)
 {
 	*map = center_map(*map, width, height);
+	*map = scale_map(*map, width, height);
 	*map = proj_map(*map, width, height);
-	// *map = scale_map(*map, width, height);
 	draw_map(g_img, *map, width, height);
 }
