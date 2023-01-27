@@ -6,7 +6,7 @@
 /*   By: sawang <sawang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 15:52:53 by sawang            #+#    #+#             */
-/*   Updated: 2023/01/25 22:35:15 by sawang           ###   ########.fr       */
+/*   Updated: 2023/01/27 22:27:28 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,8 @@ void	free_map(t_coord **map, int height)
 
 static t_coord	**new_map(t_coord **map, t_coord *line, int height)
 {
-	int	j;
-	t_coord			**map_new;
+	int		j;
+	t_coord	**map_new;
 
 	map_new = malloc((height + 1) * sizeof(t_coord **));
 	if (!map_new)
@@ -93,7 +93,7 @@ t_coord	**get_map(int fd, int *width, int *height)
 	while (str)
 	{
 		if (get_width(str) != *width)
-			return (free(str), free_map(map, *height), NULL);
+			return (err_msg(1), free(str), free_map(map, *height), NULL);
 		line = get_int_array(str, *width);
 		if (!line)
 			return (free(str), free_map(map, *height), NULL);
@@ -104,8 +104,6 @@ t_coord	**get_map(int fd, int *width, int *height)
 		str = get_next_line(fd);
 		(*height)++;
 	}
-	printf("hallo: width: %d\n", *width);
-	printf("hallo: height: %d\n", *height);
 	return (map);
 }
 

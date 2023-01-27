@@ -6,7 +6,7 @@
 /*   By: sawang <sawang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 18:27:31 by sawang            #+#    #+#             */
-/*   Updated: 2023/01/27 16:45:06 by sawang           ###   ########.fr       */
+/*   Updated: 2023/01/27 21:18:32 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,10 @@
 # include "MLX42.h"
 # include "get_next_line.h"
 # include <stdio.h>
+# include <string.h>
+# include <stdbool.h>
+# include <errno.h>
+# include <unistd.h>
 
 //Struct for pixel
 typedef struct s_pixel
@@ -63,6 +67,8 @@ typedef struct s_pixel_max
 }				t_pixel_max;
 
 //Getting the whole map from fdf file
+// check if file is valid
+bool	file_is_valid(char *str);
 // void	free_map(int **map, unsigned int height);
 void	free_map(t_coord **map, int height);
 // int	**get_map(int fd, unsigned int *width, unsigned int *height);
@@ -99,5 +105,8 @@ void	draw_line(mlx_image_t *g_img, t_pixel p1, t_pixel p2);
 void	draw_map(mlx_image_t *g_img, t_coord **map, int *width, int *height);
 //Draw function
 void	draw(mlx_image_t *g_img, t_coord ***map, int *width, int *height);
+
+//error controlling
+void	err_msg(int i);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: sawang <sawang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 15:59:53 by sawang            #+#    #+#             */
-/*   Updated: 2023/01/26 15:19:03 by sawang           ###   ########.fr       */
+/*   Updated: 2023/01/27 21:33:23 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,9 +102,11 @@ int32_t	main(void)
 
 	width = 0;
 	height = 0;
-	fd = open("../test_maps/42.fdf", O_RDONLY);
+	fd = open("../test_maps/pylone.fdf", O_RDONLY);
 	printf("fd: %d\n", fd);
 	map = get_map(fd, &width, &height);
+	if (!map)
+		exit (EXIT_FAILURE);
 	// printf("hallo: height: %d\n", height);
 	// printf("hallo: width: %d\n", width);
 	close(fd);

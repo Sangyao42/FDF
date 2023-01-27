@@ -6,7 +6,7 @@
 /*   By: sawang <sawang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 16:40:33 by sawang            #+#    #+#             */
-/*   Updated: 2023/01/27 16:43:58 by sawang           ###   ########.fr       */
+/*   Updated: 2023/01/27 17:55:59 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ t_coord	**center_map(t_coord **map, int *width, int *height)
 
 	center_x = (*width) / 2;
 	center_y = (*height) / 2;
-	printf("check: width %d\n", *width);
 	j = 0;
 	while (j < *height)
 	{
