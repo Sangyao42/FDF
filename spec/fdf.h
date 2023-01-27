@@ -6,7 +6,7 @@
 /*   By: sawang <sawang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 18:27:31 by sawang            #+#    #+#             */
-/*   Updated: 2023/01/26 14:43:01 by sawang           ###   ########.fr       */
+/*   Updated: 2023/01/27 16:45:06 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,10 @@
 
 # ifndef HEIGHT
 #  define HEIGHT 1080
+# endif
+
+# ifndef PI
+#  define PI 3.1415
 # endif
 
 # include <stdlib.h>
@@ -75,16 +79,19 @@ t_coord	*get_int_array(char *str, int width);
 //Transfered the map into 2d array, steps would be:
 //1. Centering the map
 t_coord	**center_map(t_coord **map, int *width, int *height);
-//2. Rotation
-
+//2. Rotation: update the 3d coordinates
+t_coord	**rotate_map(t_coord **map, int *width, int *height);
 //3. Isometric Projection
 // uint32_t	u_axis(int32_t x, int32_t y);
 // uint32_t	v_ordinate(int32_t x, int32_t y, int32_t z);
 // t_pixel	iso_proj(int32_t x, int32_t y, int32_t z);
 t_pixel	iso_proj(t_mid_pixel p_cart);
 t_coord	**proj_map(t_coord **map, int *width, int *height);
-// 4. scaling the map to draw inside the window
-
+// 4. scaling the map to draw inside the window, get the scale rate
+// after the projection, which updates the 2d coordinates value,
+// but apply the rate to update the 3d coordinates for a new projection
+// before the final draw.
+t_coord	**scale_map(t_coord **map, int *width, int *height);
 // 5. draw whole map
 //Plotting line
 void	draw_line(mlx_image_t *g_img, t_pixel p1, t_pixel p2);
