@@ -6,7 +6,7 @@
 /*   By: sawang <sawang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 18:21:30 by sawang            #+#    #+#             */
-/*   Updated: 2023/01/26 15:10:52 by sawang           ###   ########.fr       */
+/*   Updated: 2023/01/27 16:20:53 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,4 +56,23 @@ t_pixel	iso_proj(t_mid_pixel p_cart)
 	pixel.u = u_o + roundf((p_cart.o - p_cart.p) * cos(0.46365));
 	pixel.v = v_o + roundf((p_cart.o + p_cart.p) * sin(0.46365) - p_cart.q);
 	return (pixel);
+}
+
+t_coord	**proj_map(t_coord **map, int *width, int *height)
+{
+	int	i;
+	int	j;
+
+	j = 0;
+	while (j < *height)
+	{
+		i = 0;
+		while (i < *width)
+		{
+			map[j][i].pixel = iso_proj(map[j][i].mid_pixel);
+			i++;
+		}
+		j++;
+	}
+	return (map);
 }
