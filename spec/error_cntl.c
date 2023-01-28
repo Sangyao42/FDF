@@ -6,7 +6,7 @@
 /*   By: sawang <sawang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 17:47:54 by sawang            #+#    #+#             */
-/*   Updated: 2023/01/27 21:57:12 by sawang           ###   ########.fr       */
+/*   Updated: 2023/01/28 14:29:43 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,14 @@
 void	err_msg(int i)
 {
 	if (i == 1)
-		write(3, "Wrong map length", 17);
+		write(STDERR_FILENO, "Wrong map length", 17);
 	if (i == 2)
-		write(3, "No file selected", 17);
+		write(STDERR_FILENO, "No file selected", 17);
 	if (i == 3)
-		write(3, "Wrong file name", 16);
+		write(STDERR_FILENO, "Wrong file name", 16);
 	if (i == 4)
-		write(3, "cannot get the map", 19);
+		write(STDERR_FILENO, "cannot get the map", 19);
+	if (i == 5)
+		write(STDERR_FILENO, "Failed to initialize mlx", 25);
 	return ;
 }

@@ -6,7 +6,7 @@
 /*   By: sawang <sawang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 18:27:31 by sawang            #+#    #+#             */
-/*   Updated: 2023/01/27 21:18:32 by sawang           ###   ########.fr       */
+/*   Updated: 2023/01/28 17:49:47 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,37 @@ typedef struct s_pixel_max
 	int		v_max;
 }				t_pixel_max;
 
+typedef struct s_map
+{
+	t_coord	**coords;
+	int		width;
+	int		height;
+}				t_map;
+
+typedef struct s_input
+{
+	int	z_inc;
+	int	x_angle;
+	int	y_angle;
+	int	z_angle;
+	int	u_inc;
+	int	v_inc;
+	int	scaler;
+}				t_input;
+
+typedef struct s_fdf
+{
+	mlx_t		*mlx;
+	mlx_image_t	*g_img;
+	t_map		map;
+	t_input		data;
+}				t_fdf;
+
+//Call the mlx functions
+// int		start_fdf(t_coord	***map, int *width, int *height);
+int		start_fdf(t_fdf *frame);
+//Manipulate the map using hook
+void	hook(void *param);
 //Getting the whole map from fdf file
 // check if file is valid
 bool	file_is_valid(char *str);
@@ -104,8 +135,10 @@ void	draw_line(mlx_image_t *g_img, t_pixel p1, t_pixel p2);
 //Link all the points using draw_line
 void	draw_map(mlx_image_t *g_img, t_coord **map, int *width, int *height);
 //Draw function
-void	draw(mlx_image_t *g_img, t_coord ***map, int *width, int *height);
-
+// void	draw(mlx_image_t *g_img, t_coord ***map, int *width, int *height);
+void	draw(mlx_image_t *g_img, t_coord ***map, int *width, int *height, t_input data);
+//update map using data
+t_coord	**update_coord(t_coord **map, int *width, int *height, t_input data);
 //error controlling
 void	err_msg(int i);
 

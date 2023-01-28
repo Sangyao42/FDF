@@ -6,11 +6,17 @@
 /*   By: sawang <sawang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 19:30:46 by sawang            #+#    #+#             */
-/*   Updated: 2023/01/14 22:02:24 by sawang           ###   ########.fr       */
+/*   Updated: 2023/01/28 14:59:38 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+
+// static void my_put_pixel(mlx_image_t *g_img, int32_t u, int32_t v, uint32_t color)
+// {
+// 		get_max();
+// 		mlx_put_pixel();
+// }
 
 //draw line when 0 < |slope| < 1
 // static void	drawlinelow(mlx_image_t *g_img, uint32_t x1, uint32_t y1, uint32_t x2, uint32_t y2)

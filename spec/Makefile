@@ -1,6 +1,6 @@
 NAME = $(TEST:.c=.o)
 CC = gcc
-CFLAGS =  -Wall -Werror -Wextra
+# CFLAGS =  -Wall -Werror -Wextra
 CFLAGS += -fsanitize=address -g3
 BS = -D BUFERSIZE=100
 FRAMEWORK = -framework Cocoa -framework OpenGL -framework IOKit
@@ -13,7 +13,9 @@ SRCS = iso_proj.c\
 	   scale_map.c\
 	   rotate_map.c\
 	   error_cntl.c\
-	   file_is_valid.c
+	   file_is_valid.c\
+	   start_fdf.c\
+	   hooks.c\
 # OBJS = $(SRCS:.c=.o)
 HEADER = -I ../MLX42/include/MLX42/ -I ../GNL/src/
 LIBMLX = "../MLX42/"
@@ -24,7 +26,7 @@ LIBGLFW = "../glfw-3.3.8/lib-x86_64/"
 all: $(NAME)
 
 $(NAME): $(TEST) libmlx42 libgnl
-	$(CC) $(CFLAGS) $(TEST) $(SRCS) $(HEADER) -L $(LIBFT) -lft -L $(LIBGNL) -lgnl -L $(LIBMLX) -lmlx42 -L $(LIBGLFW) -lglfw3 $(FRAMEWORK) -o $(NAME)
+	$(CC) $(CFLAGS) $(TEST) $(SRCS) $(HEADER) -L $(LIBGNL) -lgnl -L $(LIBMLX) -lmlx42 -L $(LIBGLFW) -lglfw3 $(FRAMEWORK) -o $(NAME)
 
 # $(OBJS): $(SRCS)
 # 	$(CC) $(CFLAGS) -c $(SRCS)

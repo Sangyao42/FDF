@@ -6,7 +6,7 @@
 /*   By: sawang <sawang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 14:53:28 by sawang            #+#    #+#             */
-/*   Updated: 2023/01/27 17:52:21 by sawang           ###   ########.fr       */
+/*   Updated: 2023/01/28 15:02:26 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,16 +49,22 @@ t_coord	**rotate_map(t_coord **map, int *width, int *height)
 {
 	int		i;
 	int		j;
+	int		x_angle;
+	int y_angle;
+	int z_angle;
 
+	x_angle = 0;
+	y_angle = 0;
+	z_angle = 0;
 	j = 0;
 	while (j < *height)
 	{
 		i = 0;
 		while (i < *width)
 		{
-			rotate_x(&(map[j][i].mid_pixel), 180 * PI / 180);
-			rotate_y(&(map[j][i].mid_pixel), 180 * PI / 180);
-			rotate_z(&(map[j][i].mid_pixel), 90 * PI / 180);
+			rotate_x(&(map[j][i].mid_pixel), x_angle * PI / 180);
+			rotate_y(&(map[j][i].mid_pixel), y_angle * PI / 180);
+			rotate_z(&(map[j][i].mid_pixel), z_angle * PI / 180);
 			i++;
 		}
 		j++;
