@@ -6,7 +6,7 @@
 /*   By: sawang <sawang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 18:27:31 by sawang            #+#    #+#             */
-/*   Updated: 2023/01/28 17:49:47 by sawang           ###   ########.fr       */
+/*   Updated: 2023/01/30 22:01:17 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,12 +76,12 @@ typedef struct s_map
 typedef struct s_input
 {
 	int	z_inc;
+	float	scaler;
 	int	x_angle;
 	int	y_angle;
 	int	z_angle;
 	int	u_inc;
 	int	v_inc;
-	int	scaler;
 }				t_input;
 
 typedef struct s_fdf
@@ -92,11 +92,18 @@ typedef struct s_fdf
 	t_input		data;
 }				t_fdf;
 
+typedef enum s_no_keys
+{
+	NO_KEY_PRESSED = 0,
+}			t_no_keys;
+
 //Call the mlx functions
 // int		start_fdf(t_coord	***map, int *width, int *height);
 int		start_fdf(t_fdf *frame);
+//Manipulate the data for updating the 3d-/2d-/ coordinates
+t_input	*init_data(t_input *data);
 //Manipulate the map using hook
-void	hook(void *param);
+void	hook(t_fdf *frame);
 //Getting the whole map from fdf file
 // check if file is valid
 bool	file_is_valid(char *str);
@@ -117,7 +124,8 @@ t_coord	*get_int_array(char *str, int width);
 //1. Centering the map
 t_coord	**center_map(t_coord **map, int *width, int *height);
 //2. Rotation: update the 3d coordinates
-t_coord	**rotate_map(t_coord **map, int *width, int *height);
+// t_coord	**rotate_map(t_coord **map, int *width, int *height);
+t_coord	**rotate_map(t_coord **map, int *width, int *height, t_input data);
 //3. Isometric Projection
 // uint32_t	u_axis(int32_t x, int32_t y);
 // uint32_t	v_ordinate(int32_t x, int32_t y, int32_t z);
@@ -130,15 +138,19 @@ t_coord	**proj_map(t_coord **map, int *width, int *height);
 // before the final draw.
 t_coord	**scale_map(t_coord **map, int *width, int *height);
 // 5. draw whole map
+//My put_pixel function to avoid segfault
+void	fdf_put_pixel(mlx_image_t *img, uint32_t x, uint32_t y, uint32_t color);
 //Plotting line
 void	draw_line(mlx_image_t *g_img, t_pixel p1, t_pixel p2);
 //Link all the points using draw_line
 void	draw_map(mlx_image_t *g_img, t_coord **map, int *width, int *height);
 //Draw function
 // void	draw(mlx_image_t *g_img, t_coord ***map, int *width, int *height);
-void	draw(mlx_image_t *g_img, t_coord ***map, int *width, int *height, t_input data);
+// void	draw(mlx_image_t *g_img, t_coord ***map, int *width, int *height, t_input data);
+t_coord	**draw(mlx_image_t *g_img, t_coord **map, int *width, int *height, t_input *data, keys_t key);
 //update map using data
-t_coord	**update_coord(t_coord **map, int *width, int *height, t_input data);
+t_input	*update_data(t_input *data, keys_t key);
+t_coord	**update_coord(t_coord **map, int *width, int *height, t_input *data, keys_t key);
 //error controlling
 void	err_msg(int i);
 

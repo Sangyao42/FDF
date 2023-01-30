@@ -6,16 +6,29 @@
 /*   By: sawang <sawang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 14:14:01 by sawang            #+#    #+#             */
-/*   Updated: 2023/01/28 21:00:09 by sawang           ###   ########.fr       */
+/*   Updated: 2023/01/30 21:00:39 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
+t_input	*init_data(t_input *data)
+{
+	data->z_inc = 0;
+	data->scaler = 1;
+	data->x_angle = 0;
+	data->y_angle = 0;
+	data->z_angle = 0;
+	data->u_inc = 0;
+	data->v_inc = 0;
+	return (data);
+}
+
 int	start_fdf(t_fdf *frame)
 {
-	t_input *data;
-	data = calloc(1, sizeof(t_input));
+	t_input	*data;
+
+	data = init_data(data);
 	(*frame).data = *data;
 	printf("test: %d", data->u_inc);
 	(*frame).mlx = mlx_init(WIDTH, HEIGHT, "FDF_Sangyao", true);
@@ -29,8 +42,8 @@ int	start_fdf(t_fdf *frame)
 	frame->map.coords = center_map((*frame).map.coords, &(*frame).map.width, &(*frame).map.height);
 	frame->map.coords = scale_map((*frame).map.coords, &(*frame).map.width, &(*frame).map.height);
 	frame->map.coords = proj_map((*frame).map.coords, &(*frame).map.width, &(*frame).map.height);
-	draw((*frame).g_img, &(*frame).map.coords, &(*frame).map.width, &(*frame).map.height, frame->data);
-	mlx_loop_hook((*frame).mlx, &hook, &frame);
+	draw((*frame).g_img, (*frame).map.coords, &(*frame).map.width, &(*frame).map.height, &frame->data, (keys_t)NO_KEY_PRESSED);
+	mlx_loop_hook((*frame).mlx, (void (*)(void *))hook, frame);
 	mlx_loop((*frame).mlx);
 	free_map((*frame).map.coords, (*frame).map.height);
 	mlx_delete_image((*frame).mlx, (*frame).g_img);

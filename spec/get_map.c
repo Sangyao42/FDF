@@ -6,7 +6,7 @@
 /*   By: sawang <sawang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 15:52:53 by sawang            #+#    #+#             */
-/*   Updated: 2023/01/27 22:27:28 by sawang           ###   ########.fr       */
+/*   Updated: 2023/01/30 15:50:05 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@
 // }
 void	free_map(t_coord **map, int height)
 {
-	t_coord			**current;
-	int	i;
+	t_coord	**current;
+	int		i;
 
 	if (!map)
 		return ;

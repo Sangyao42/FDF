@@ -6,36 +6,61 @@
 /*   By: sawang <sawang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 13:47:29 by sawang            #+#    #+#             */
-/*   Updated: 2023/01/28 21:58:13 by sawang           ###   ########.fr       */
+/*   Updated: 2023/01/30 22:57:34 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	hook(void *param)
+void	quit(mlx_t *mlx, t_coord **map)
 {
-	t_fdf	**frame;
-
-	frame = (t_fdf **)param;
-	if (mlx_is_key_down((*frame)->mlx, MLX_KEY_ESCAPE))
-		mlx_close_window((*frame)->mlx);
-	// (*frame)->data.u_inc = 0;
-	// (*frame)->data.v_inc = 0;
-	if (mlx_is_key_down((*frame)->mlx, MLX_KEY_UP))
-	{
-		(*frame)->data.v_inc = -10;
-	}
-	if (mlx_is_key_down((*frame)->mlx, MLX_KEY_DOWN))
-		(*frame)->data.v_inc = 10;
-	if (mlx_is_key_down((*frame)->mlx, MLX_KEY_LEFT))
-	{
-		(*frame)->data.u_inc -= 1000;
-	}
-	if (mlx_is_key_down((*frame)->mlx, MLX_KEY_RIGHT))
-		(*frame)->data.u_inc = 10;
-	printf("frame data: %d\n", (*frame)->data.u_inc);
-	// memset((*frame)->g_img->pixels, 0 , (*frame)->g_img->width * (*frame)->g_img->height * sizeof(int));
-	draw((*frame)->g_img, &((*frame)->map.coords), &((*frame)->map.width), &((*frame)->map.height), (*frame)->data);
+	free(map);
+	mlx_close_window(mlx);
+	exit(EXIT_SUCCESS);
 }
 
-// bool mlx_loop_hook(mlx_t* mlx, void (*f)(void*), void* param);
+void	hook(t_fdf *frame)
+{
+	// int i;
+	// int j;
+
+	// i = 0;
+	// printf("before:\n");
+	// while (i < frame->map.height)
+	// {
+	// 	j = 0;
+	// 	while (j < frame->map.width)
+	// 	{
+	// 		printf(" %d,%.2d ", (frame->map.coords)[i][j].pixel.u, (frame->map.coords)[i][j].pixel.v);
+	// 		j++;
+	// 	}
+	// 	printf("\n");
+	// 	i++;
+	// }
+	if (mlx_is_key_down(frame->mlx, MLX_KEY_ESCAPE))
+		quit(frame->mlx, frame->map.coords);
+	// frame->data = *(init_data(&(frame->data)));
+	if (mlx_is_key_down(frame->mlx, MLX_KEY_UP))
+		frame->map.coords = draw(frame->g_img, (frame->map.coords), &(frame->map.width), &(frame->map.height), &frame->data, MLX_KEY_UP);
+	if (mlx_is_key_down(frame->mlx, MLX_KEY_DOWN))
+		draw(frame->g_img, (frame->map.coords), &(frame->map.width), &(frame->map.height), &frame->data, MLX_KEY_DOWN);
+
+	if (mlx_is_key_down(frame->mlx, MLX_KEY_LEFT))
+		draw(frame->g_img, (frame->map.coords), &(frame->map.width), &(frame->map.height), &frame->data, MLX_KEY_LEFT);
+	if (mlx_is_key_down(frame->mlx, MLX_KEY_RIGHT))
+		draw(frame->g_img, (frame->map.coords), &(frame->map.width), &(frame->map.height), &frame->data, MLX_KEY_RIGHT);
+	// memset(frame->g_img->pixels, 0 , frame->g_img->width * frame->g_img->height * sizeof(int));
+	// i = 0;
+	// printf("after: \n");
+	// while (i < frame->map.height)
+	// {
+	// 	j = 0;
+	// 	while (j < frame->map.width)
+	// 	{
+	// 		printf("%d,%.2d ", (frame->map.coords)[i][j].pixel.u, (frame->map.coords)[i][j].pixel.v);
+	// 		j++;
+	// 	}
+	// 	printf("\n");
+	// 	i++;
+	// }
+}

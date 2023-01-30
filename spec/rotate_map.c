@@ -6,7 +6,7 @@
 /*   By: sawang <sawang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 14:53:28 by sawang            #+#    #+#             */
-/*   Updated: 2023/01/28 15:02:26 by sawang           ###   ########.fr       */
+/*   Updated: 2023/01/30 18:14:29 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,26 +45,26 @@ static void	rotate_z(t_mid_pixel *m_pixel, float alpha)
 	m_pixel->p = -prev_o * sin(alpha) + prev_p * cos(alpha);
 }
 
-t_coord	**rotate_map(t_coord **map, int *width, int *height)
+t_coord	**rotate_map(t_coord **map, int *width, int *height, t_input data)
 {
 	int		i;
 	int		j;
 	int		x_angle;
-	int y_angle;
-	int z_angle;
+	int		y_angle;
+	int		z_angle;
 
-	x_angle = 0;
-	y_angle = 0;
-	z_angle = 0;
+	// x_angle = 0;
+	// y_angle = 0;
+	// z_angle = 0;
 	j = 0;
 	while (j < *height)
 	{
 		i = 0;
 		while (i < *width)
 		{
-			rotate_x(&(map[j][i].mid_pixel), x_angle * PI / 180);
-			rotate_y(&(map[j][i].mid_pixel), y_angle * PI / 180);
-			rotate_z(&(map[j][i].mid_pixel), z_angle * PI / 180);
+			rotate_x(&(map[j][i].mid_pixel), data.x_angle * PI / 180);
+			rotate_y(&(map[j][i].mid_pixel), data.y_angle * PI / 180);
+			rotate_z(&(map[j][i].mid_pixel), data.z_angle * PI / 180);
 			i++;
 		}
 		j++;

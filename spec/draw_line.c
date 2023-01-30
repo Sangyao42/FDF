@@ -6,17 +6,17 @@
 /*   By: sawang <sawang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 19:30:46 by sawang            #+#    #+#             */
-/*   Updated: 2023/01/28 14:59:38 by sawang           ###   ########.fr       */
+/*   Updated: 2023/01/30 15:48:00 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-// static void my_put_pixel(mlx_image_t *g_img, int32_t u, int32_t v, uint32_t color)
-// {
-// 		get_max();
-// 		mlx_put_pixel();
-// }
+void	fdf_put_pixel(mlx_image_t *img, uint32_t x, uint32_t y, uint32_t color)
+{
+	if (x < WIDTH && y < HEIGHT)
+		mlx_put_pixel(img, x, y, color);
+}
 
 //draw line when 0 < |slope| < 1
 // static void	drawlinelow(mlx_image_t *g_img, uint32_t x1, uint32_t y1, uint32_t x2, uint32_t y2)
@@ -67,7 +67,7 @@ static void	drawlinelow(mlx_image_t *g_img, t_pixel p1, t_pixel p2)
 	p = (2 * dy) - dx;
 	while (p1.u <= p2.u)
 	{
-		mlx_put_pixel(g_img, p1.u, p1.v, 0x00FF00FF);
+		fdf_put_pixel(g_img, p1.u, p1.v, 0x00FF00FF);
 		p1.u++;
 		if (p < 0)
 			p = p + 2 * dy;
@@ -128,7 +128,7 @@ static void	drawlinehigh(mlx_image_t *g_img, t_pixel p1, t_pixel p2)
 	p = (2 * dx) - dy;
 	while (p1.v <= p2.v)
 	{
-		mlx_put_pixel(g_img, p1.u, p1.v, 0x00FF00FF);
+		fdf_put_pixel(g_img, p1.u, p1.v, 0x00FF00FF);
 		p1.v++;
 		if (p < 0)
 			p = p + 2 * dx;
@@ -139,6 +139,8 @@ static void	drawlinehigh(mlx_image_t *g_img, t_pixel p1, t_pixel p2)
 		}
 	}
 }
+
+
 
 //check the draw direction
 // void	draw_line(mlx_image_t *g_img, int32_t x1, int32_t y1, int32_t x2, int32_t y2)
