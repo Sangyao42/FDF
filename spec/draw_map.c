@@ -6,35 +6,37 @@
 /*   By: sawang <sawang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 16:40:33 by sawang            #+#    #+#             */
-/*   Updated: 2023/01/30 22:49:30 by sawang           ###   ########.fr       */
+/*   Updated: 2023/01/31 17:21:45 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-t_coord	**translate_map(t_coord **map, int *width, int *height, t_input data)
-{
-	int		i;
-	int		j;
+// t_coord	**translate_map(t_coord **map, int *width, int *height, t_input *data)
+// {
+// 	int		i;
+// 	int		j;
 
-	j = 0;
-	// printf("\nPrev: map00: %d, %d\n", (map[0][0].pixel.u, map[0][0].pixel.v);
-	// printf("map00: %d, %d\n\n",  data.u_inc,  data.v_inc);
-	while (j < *height)
-	{
-		i = 0;
-		while (i < *width)
-		{
-			map[j][i].pixel.u = map[j][i].pixel.u + data.u_inc;
-			map[j][i].pixel.v = map[j][i].pixel.v + data.v_inc;
-			i++;
-		}
-		j++;
-	}
-	// printf("\nmap00: %d, %d\n", map[0][0].pixel.u, map[0][0].pixel.v);
-	// printf("map00: %d, %d\n",  data.u_inc,  data.v_inc);
-	return (map);
-}
+// 	j = 0;
+// 	printf("\nPrev: map00: %d, %d\n", (map[0][0].pixel.u, map[0][0].pixel.v));
+// 	printf("map00: %d, %d\n\n",  data->u_inc,  data->v_inc);
+// 	while (j < *height)
+// 	{
+// 		i = 0;
+// 		while (i < *width)
+// 		{
+// 			map[j][i].mid_pixel.o += data->u_inc;
+// 			map[j][i].mid_pixel.p += data->v_inc;
+// 			// map[j][i].pixel.u += data->u_inc;
+// 			// map[j][i].pixel.v += data->v_inc;
+// 			i++;
+// 		}
+// 		j++;
+// 	}
+// 	printf("\nmap00: %d, %d\n", map[0][0].pixel.u, map[0][0].pixel.v);
+// 	printf("map00: %d, %d\n",  data->u_inc,  data->v_inc);
+// 	return (map);
+// }
 
 t_coord	**center_map(t_coord **map, int *width, int *height)
 {
@@ -85,6 +87,28 @@ void	draw_map(mlx_image_t *g_img, t_coord **map, int *width, int *height)
 		draw_line(g_img, map[j][i].pixel, map[j][i + 1].pixel);
 		i++;
 	}
+	// int	i;
+	// int	j;
+
+	// j = 0;
+	// while (j < ((*height) - 1))
+	// {
+	// 	i = 0;
+	// 	while (i < ((*width) - 1))
+	// 	{
+	// 		draw_line(g_img, map[j][i].pixel, map[j][i + 1].pixel);
+	// 		draw_line(g_img, map[j][i].pixel, map[j + 1][i].pixel);
+	// 		i++;
+	// 		draw_line(g_img, map[j + 1][i].pixel, map[j][i].pixel);
+	// 	}
+	// 	j++;
+	// }
+	// i = 0;
+	// while (i < (*width - 1))
+	// {
+	// 	draw_line(g_img, map[j][i].pixel, map[j][i + 1].pixel);
+	// 	i++;
+	// }
 }
 
 t_coord	**draw(mlx_image_t *g_img, t_coord **map, int *width, int *height, t_input *data, keys_t key)
@@ -124,6 +148,7 @@ t_coord	**draw(mlx_image_t *g_img, t_coord **map, int *width, int *height, t_inp
 	// 	printf("\n");
 	// 	i++;
 	// }
+	// copy(map, *width, *height);
 	draw_map(g_img, map, width, height);
 	return(map);
 }
@@ -134,24 +159,24 @@ t_coord	**update_coord(t_coord **map, int *width, int *height, t_input *data, ke
 	int		j;
 
 	update_data(data, key);
-	printf("tst_u: %d\n", data->u_inc);
-	printf("tst_v: %d\n", data->v_inc);
-	j = 0;
-	while (j < *height)
-	{
-		i = 0;
-		while (i < *width)
-		{
-			map[j][i].mid_pixel.o = map[j][i].mid_pixel.o * data->scaler;
-			map[j][i].mid_pixel.p = map[j][i].mid_pixel.p * data->scaler;
-			map[j][i].mid_pixel.q = (map[j][i].mid_pixel.q + data->z_inc) * data->scaler;
-			i++;
-		}
-		j++;
-	}
-	map = rotate_map(map, width, height, *data);
-	map = proj_map(map, width, height);
-	map = translate_map(map, width, height, *data);
+	// printf("tst_u: %d\n", data->u_inc);
+	// printf("tst_v: %d\n", data->v_inc);
+	// j = 0;
+	// while (j < *height)
+	// {
+	// 	i = 0;
+	// 	while (i < *width)
+	// 	{
+	// 		map[j][i].mid_pixel.o = map[j][i].mid_pixel.o * data->scaler;
+	// 		map[j][i].mid_pixel.p = map[j][i].mid_pixel.p * data->scaler;
+	// 		map[j][i].mid_pixel.q = (map[j][i].mid_pixel.q + data->z_inc) * data->scaler;
+	// 		i++;
+	// 	}
+	// 	j++;
+	// }
+	// map = rotate_map(map, width, height, *data);
+	// map = proj_map(map, width, height);
+	map = translate_map(map, width, height, data);
 	return (map);
 }
 

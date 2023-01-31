@@ -6,7 +6,7 @@
 /*   By: sawang <sawang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 13:47:29 by sawang            #+#    #+#             */
-/*   Updated: 2023/01/30 22:57:34 by sawang           ###   ########.fr       */
+/*   Updated: 2023/01/31 13:25:03 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	hook(t_fdf *frame)
 		quit(frame->mlx, frame->map.coords);
 	// frame->data = *(init_data(&(frame->data)));
 	if (mlx_is_key_down(frame->mlx, MLX_KEY_UP))
-		frame->map.coords = draw(frame->g_img, (frame->map.coords), &(frame->map.width), &(frame->map.height), &frame->data, MLX_KEY_UP);
+		draw(frame->g_img, (frame->map.coords), &(frame->map.width), &(frame->map.height), &frame->data, MLX_KEY_UP);
 	if (mlx_is_key_down(frame->mlx, MLX_KEY_DOWN))
 		draw(frame->g_img, (frame->map.coords), &(frame->map.width), &(frame->map.height), &frame->data, MLX_KEY_DOWN);
 

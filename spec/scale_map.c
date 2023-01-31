@@ -6,7 +6,7 @@
 /*   By: sawang <sawang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 16:19:53 by sawang            #+#    #+#             */
-/*   Updated: 2023/01/27 16:20:07 by sawang           ###   ########.fr       */
+/*   Updated: 2023/01/31 22:02:10 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,62 @@ static float	get_scale_rate(t_coord **map, int *width, int *height)
 	return (v_rate);
 }
 
+// void	iso_proj2(t_coord **map, int j, int i)
+// {
+// 	t_pixel	pixel;
+// 	int32_t	u_o;
+// 	int32_t	v_o;
+
+// 	u_o = WIDTH / 2;
+// 	v_o = HEIGHT / 2;
+// 	map[j][i].pixel.u = u_o + roundf((map[j][i].mid_pixel.o - map[j][i].mid_pixel.p) * cos(0.46365));
+// 	map[j][i].pixel.v = v_o + roundf((map[j][i].mid_pixel.o + map[j][i].mid_pixel.p) * sin(0.46365) - map[j][i].mid_pixel.q);
+// }
+
+// t_coord	**proj_map2(t_coord **map, int *width, int *height)
+// {
+// 	int	i;
+// 	int	j;
+
+// 	j = 0;
+// 	while (j < *height)
+// 	{
+// 		i = 0;
+// 		while (i < *width)
+// 		{
+// 			iso_proj2(map, j, i);
+// 			i++;
+// 		}
+// 		j++;
+// 	}
+// 	return (map);
+// }
+
+// t_coord	**scale_map(t_coord **map, int *width, int *height)
+// {
+// 	int		rate;
+// 	int		i;
+// 	int		j;
+
+// 	map = proj_map(map, width, height);
+// 	rate = roundf(get_scale_rate(map, width, height));
+// 	printf("rate: %d\n", rate);
+// 	j = 0;
+// 	while (j < *height)
+// 	{
+// 		i = 0;
+// 		while (i < *width)
+// 		{
+// 			map[j][i].mid_pixel.o = map[j][i].mid_pixel.o * rate;
+// 			map[j][i].mid_pixel.p = map[j][i].mid_pixel.p * rate;
+// 			map[j][i].mid_pixel.q = map[j][i].mid_pixel.q * rate;
+// 			i++;
+// 		}
+// 		j++;
+// 	}
+// 	return (map);
+// }
+
 t_coord	**scale_map(t_coord **map, int *width, int *height)
 {
 	int		rate;
@@ -69,9 +125,9 @@ t_coord	**scale_map(t_coord **map, int *width, int *height)
 		i = 0;
 		while (i < *width)
 		{
-			map[j][i].mid_pixel.o = map[j][i].mid_pixel.o * rate;
-			map[j][i].mid_pixel.p = map[j][i].mid_pixel.p * rate;
-			map[j][i].mid_pixel.q = map[j][i].mid_pixel.q * rate;
+			map[j][i].mid_pixel_modified.o = map[j][i].mid_pixel.o * rate;
+			map[j][i].mid_pixel_modified.p = map[j][i].mid_pixel.p * rate;
+			map[j][i].mid_pixel_modified.q = map[j][i].mid_pixel.q * rate;
 			i++;
 		}
 		j++;

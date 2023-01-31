@@ -6,7 +6,7 @@
 /*   By: sawang <sawang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 18:27:31 by sawang            #+#    #+#             */
-/*   Updated: 2023/01/30 22:01:17 by sawang           ###   ########.fr       */
+/*   Updated: 2023/01/31 18:35:47 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ typedef struct s_coord
 {
 	int				z;
 	t_mid_pixel		mid_pixel;
+	t_mid_pixel		mid_pixel_modified;
 	t_pixel			pixel;
 }				t_coord;
 
@@ -130,7 +131,7 @@ t_coord	**rotate_map(t_coord **map, int *width, int *height, t_input data);
 // uint32_t	u_axis(int32_t x, int32_t y);
 // uint32_t	v_ordinate(int32_t x, int32_t y, int32_t z);
 // t_pixel	iso_proj(int32_t x, int32_t y, int32_t z);
-t_pixel	iso_proj(t_mid_pixel p_cart);
+void	iso_proj(t_coord **map, int j, int i);
 t_coord	**proj_map(t_coord **map, int *width, int *height);
 // 4. scaling the map to draw inside the window, get the scale rate
 // after the projection, which updates the 2d coordinates value,
