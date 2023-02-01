@@ -46,26 +46,20 @@ static void	rotate_z(t_mid_pixel *m_pixel, float alpha)
 	m_pixel->p = -prev_o * sin(alpha) + prev_p * cos(alpha);
 }
 
-t_coord	**rotate_map(t_coord **map, int *width, int *height, t_input data)
+t_coord	**rotate_map(t_coord **map, int *width, int *height, t_input *data)
 {
 	int		i;
 	int		j;
-	int		x_angle;
-	int		y_angle;
-	int		z_angle;
 
-	// x_angle = 0;
-	// y_angle = 0;
-	// z_angle = 0;
 	j = 0;
 	while (j < *height)
 	{
 		i = 0;
 		while (i < *width)
 		{
-			rotate_x(&(map[j][i].mid_pixel), data.x_angle * PI / 180);
-			rotate_y(&(map[j][i].mid_pixel), data.y_angle * PI / 180);
-			rotate_z(&(map[j][i].mid_pixel), data.z_angle * PI / 180);
+			rotate_x(&(map[j][i].mid_pixel_modified), data->x_angle * PI / 180);
+			rotate_y(&(map[j][i].mid_pixel_modified), data->y_angle * PI / 180);
+			rotate_z(&(map[j][i].mid_pixel_modified), data->z_angle * PI / 180);
 			i++;
 		}
 		j++;

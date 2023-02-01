@@ -6,7 +6,7 @@
 /*   By: sawang <sawang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 18:21:30 by sawang            #+#    #+#             */
-/*   Updated: 2023/01/31 15:06:39 by sawang           ###   ########.fr       */
+/*   Updated: 2023/02/01 16:46:21 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,21 +47,13 @@
 
 void	iso_proj(t_coord **map, int j, int i)
 {
-	t_pixel	pixel;
 	int32_t	u_o;
 	int32_t	v_o;
 
 	u_o = WIDTH / 2;
 	v_o = HEIGHT / 2;
-	// map[j][i].pixel.u = u_o + roundf((map[j][i].mid_pixel.o - map[j][i].mid_pixel.p) * cos(0.46365));
-	// map[j][i].pixel.v = v_o + roundf((map[j][i].mid_pixel.o + map[j][i].mid_pixel.p) * sin(0.46365) - map[j][i].mid_pixel.q);
-	float tmp = map[j][i].mid_pixel.o;
-	map[j][i].mid_pixel.o = u_o + roundf((map[j][i].mid_pixel.o - map[j][i].mid_pixel.p) * cos(0.46365));
-	map[j][i].mid_pixel.p = v_o + roundf((tmp + map[j][i].mid_pixel.p) * sin(0.46365) - map[j][i].mid_pixel.q);
-	map[j][i].pixel.u = map[j][i].mid_pixel.o;
-	map[j][i].pixel.v = map[j][i].mid_pixel.p;
-	// map[j][i].mid_pixel.o = 0;
-	// map[j][i].mid_pixel.p = 0;
+	map[j][i].pixel.u = u_o + roundf((map[j][i].mid_pixel.o - map[j][i].mid_pixel.p) * cos(0.46365));
+	map[j][i].pixel.v = v_o + roundf((map[j][i].mid_pixel.o + map[j][i].mid_pixel.p) * sin(0.46365) - map[j][i].mid_pixel.q);
 }
 
 t_coord	**proj_map(t_coord **map, int *width, int *height)

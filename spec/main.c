@@ -6,7 +6,7 @@
 /*   By: sawang <sawang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 17:21:31 by sawang            #+#    #+#             */
-/*   Updated: 2023/01/30 22:03:49 by sawang           ###   ########.fr       */
+/*   Updated: 2023/02/01 16:26:58 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ int	main(int argc, char **argv)
 	if (!frame.map.coords)
 		return (err_msg(4), EXIT_FAILURE);
 	close(fd);
-	start_fdf(&frame);
+	int check = start_fdf(&frame);
+	if (check)
+		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }

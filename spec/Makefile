@@ -1,7 +1,7 @@
 NAME = $(TEST:.c=.o)
 CC = gcc
-# CFLAGS =  -Wall -Werror -Wextra
-CFLAGS += -fsanitize=address -g3
+CFLAGS =  -Wall -Werror -Wextra
+CFLAGS += -fsanitize=address -g3 -march=nocona -flto -Ofast
 BS = -D BUFERSIZE=100
 FRAMEWORK = -framework Cocoa -framework OpenGL -framework IOKit
 TEST = main.c
@@ -10,7 +10,7 @@ SRCS = iso_proj.c\
 	   get_map.c\
 	   parser.c\
 	   draw_map.c\
-	   scale_map.c\
+	   init_map.c\
 	   rotate_map.c\
 	   error_cntl.c\
 	   file_is_valid.c\
