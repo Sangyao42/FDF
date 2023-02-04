@@ -6,7 +6,7 @@
 /*   By: sawang <sawang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 17:21:31 by sawang            #+#    #+#             */
-/*   Updated: 2023/02/01 16:26:58 by sawang           ###   ########.fr       */
+/*   Updated: 2023/02/04 17:40:17 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,6 @@
 int	main(int argc, char **argv)
 {
 	int		fd;
-	// int		height;
-	// int		width;
-	// t_coord	**map;
 	t_fdf	frame;
 
 	if (argc != 2)
@@ -28,11 +25,7 @@ int	main(int argc, char **argv)
 	frame.map.height = 0;
 	fd = open(*(argv + 1), O_RDONLY);
 	if (fd == -1)
-	{
-		perror(*(argv + 1));
-		exit (EXIT_FAILURE);
-	}
-	// map = get_map(fd, &width, &height);
+		return (perror(*(argv + 1)), EXIT_FAILURE);
 	frame.map.coords = get_map(fd, &(frame.map.width), &(frame.map.height));
 	if (!frame.map.coords)
 		return (err_msg(4), EXIT_FAILURE);

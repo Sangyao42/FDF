@@ -6,7 +6,7 @@
 /*   By: sawang <sawang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 14:14:01 by sawang            #+#    #+#             */
-/*   Updated: 2023/02/01 22:57:44 by sawang           ###   ########.fr       */
+/*   Updated: 2023/02/04 21:19:19 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 t_input	*init_data(t_input *data)
 {
-	data->z_inc = 0;
+	data->z_inc = 1;
 	data->scaler = 1;
 	data->x_angle = 0;
 	data->y_angle = 0;
 	data->z_angle = 0;
-	data->u_inc = 0;
-	data->v_inc = 0;
+	data->u_inc = WIDTH / 2;
+	data->v_inc = HEIGHT / 2;
 	return (data);
 }
 
@@ -36,11 +36,11 @@ int	start_fdf(t_fdf *frame)
 	}
 	(*frame).g_img = mlx_new_image((*frame).mlx, WIDTH, HEIGHT);
 	mlx_image_to_window((*frame).mlx, (*frame).g_img, 0, 0);
-	frame->map.coords = center_map((*frame).map.coords, &(*frame).map.width, &(*frame).map.height);
-	frame->map.coords = proj_map((*frame).map.coords, &(*frame).map.width, &(*frame).map.height);
-	frame->data.scaler = get_scale_rate((*frame).map.coords, &(*frame).map.width, &(*frame).map.height);
+	center_map(&(frame->map));
+	proj_map(&(frame->map));
+	frame->data.scaler = get_scale_rate(&(frame->map));
 	mlx_scroll_hook(frame->mlx, (mlx_scrollfunc) scroll_hook, frame);
-	// mlx_key_hook(frame->mlx, (mlx_keyfunc) key_hook, frame);
+	mlx_key_hook(frame->mlx, (mlx_keyfunc) key_hook, frame);
 	mlx_loop_hook((*frame).mlx, (void (*)(void *))hook, frame);
 	mlx_loop((*frame).mlx);
 	free_map((*frame).map.coords, (*frame).map.height);

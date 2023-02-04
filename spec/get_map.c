@@ -6,42 +6,12 @@
 /*   By: sawang <sawang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 15:52:53 by sawang            #+#    #+#             */
-/*   Updated: 2023/01/30 15:50:05 by sawang           ###   ########.fr       */
+/*   Updated: 2023/02/04 17:39:52 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-// int	**get_map_array(int fd)
-// {
-// 	char			*str;
-// 	unsigned int	width;
-// 	int				*line;
-// 	int				**map;
-// 	unsigned int	height;
-
-// 	map = NULL;
-// 	if (str)
-// 	{
-// 		width = get_width(str);
-// 		height = 0;
-// 	}
-// 	while (str)
-// 	{
-// 		if (get_width(str) != width)
-// 			return (free(str), free_map(map, height), NULL);
-// 		line = get_int_array(str, width);
-// 		if (!line)
-// 			return (free(str), free_map(map, height), NULL);
-// 		map = new_map(map, line, height);
-// 		if (!map)
-// 			return (free(str), free_map(map, height), NULL);
-// 		free(str);
-// 		str = get_next_line(fd);
-// 		height++;
-// 	}
-// 	return (map);
-// }
 void	free_map(t_coord **map, int height)
 {
 	t_coord	**current;
