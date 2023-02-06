@@ -6,7 +6,7 @@
 /*   By: sawang <sawang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 19:30:46 by sawang            #+#    #+#             */
-/*   Updated: 2023/02/04 18:54:22 by sawang           ###   ########.fr       */
+/*   Updated: 2023/02/06 15:31:08 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	fdf_put_pixel(mlx_image_t *img, t_pixel pixel, uint32_t color)
 {
-	if (pixel.u < WIDTH && pixel.v < HEIGHT)
+	if (pixel.u < WIDTH && pixel.u > 0 && pixel.v > 0 && pixel.v < HEIGHT)
 		mlx_put_pixel(img, pixel.u, pixel.v, color);
 }
 

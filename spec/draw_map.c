@@ -6,7 +6,7 @@
 /*   By: sawang <sawang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 16:40:33 by sawang            #+#    #+#             */
-/*   Updated: 2023/02/04 21:47:52 by sawang           ###   ########.fr       */
+/*   Updated: 2023/02/06 19:49:59 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,10 +96,36 @@ void	draw_map(mlx_image_t *g_img, t_map *map)
 	}
 }
 
-void	draw(mlx_image_t *g_img, t_map *map, t_input *data)
+void	updata_data(t_input *data, keys_t key)
 {
+	if (key == MLX_KEY_UP)
+		data->v_inc -= 10;
+	if (key == MLX_KEY_DOWN)
+		data->v_inc += 10;
+	if (key == MLX_KEY_LEFT)
+		data->u_inc -= 10;
+	if (key == MLX_KEY_RIGHT)
+		data->u_inc += 10;
+	if (key == MLX_KEY_Q)
+		data->x_angle += 1;
+	if (key == MLX_KEY_W)
+		data->x_angle -= 1;
+	if (key == MLX_KEY_A)
+		data->y_angle += 1;
+	if (key == MLX_KEY_S)
+		data->y_angle -= 1;
+	if (key == MLX_KEY_Z)
+		data->z_angle += 1;
+	if (key == MLX_KEY_X)
+		data->z_angle -= 1;
+}
+
+void	draw(mlx_image_t *g_img, t_map *map, t_input *data, keys_t key)
+{
+	updata_data(data, key);
 	memset(g_img->pixels, 0, g_img->width * g_img->height * sizeof(int));
 	update_coord(map, data);
 	update_pixel(map, data);
 	draw_map(g_img, map);
 }
+

@@ -6,7 +6,7 @@
 /*   By: sawang <sawang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 14:14:01 by sawang            #+#    #+#             */
-/*   Updated: 2023/02/04 21:19:19 by sawang           ###   ########.fr       */
+/*   Updated: 2023/02/06 19:53:00 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ int	start_fdf(t_fdf *frame)
 	center_map(&(frame->map));
 	proj_map(&(frame->map));
 	frame->data.scaler = get_scale_rate(&(frame->map));
+	draw(frame->g_img, &frame->map, &frame->data, 0);
 	mlx_scroll_hook(frame->mlx, (mlx_scrollfunc) scroll_hook, frame);
 	mlx_key_hook(frame->mlx, (mlx_keyfunc) key_hook, frame);
 	mlx_loop_hook((*frame).mlx, (void (*)(void *))hook, frame);

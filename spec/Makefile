@@ -1,7 +1,7 @@
 NAME = $(TEST:.c=.o)
 CC = gcc
 CFLAGS =  -Wall -Werror -Wextra
-CFLAGS += -fsanitize=address -g3 -march=nocona -flto -Ofast
+# CFLAGS += -fsanitize=address -g3 -march=nocona -flto -Ofast
 BS = -D BUFERSIZE=100
 FRAMEWORK = -framework Cocoa -framework OpenGL -framework IOKit
 TEST = main.c
@@ -16,6 +16,7 @@ SRCS = iso_proj.c\
 	   file_is_valid.c\
 	   start_fdf.c\
 	   hooks.c\
+	   draw_parallel.c\
 # OBJS = $(SRCS:.c=.o)
 HEADER = -I ../MLX42/include/MLX42/ -I ../GNL/src/
 LIBMLX = "../MLX42/"

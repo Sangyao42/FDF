@@ -6,7 +6,7 @@
 /*   By: sawang <sawang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 18:27:31 by sawang            #+#    #+#             */
-/*   Updated: 2023/02/04 21:39:58 by sawang           ###   ########.fr       */
+/*   Updated: 2023/02/06 21:00:52 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@
 # include <stdbool.h>
 # include <errno.h>
 # include <unistd.h>
+#include <stdlib.h>
 
 //Struct for pixel
 typedef struct s_pixel
@@ -45,20 +46,20 @@ typedef struct s_pixel
 }				t_pixel;
 
 //struct for coordinates after calculate, eg: rotation
-typedef struct s_mid_pixel
+typedef struct s_point
 {
 	float	o;
 	float	p;
 	float	q;
-}				t_mid_pixel;
+}				t_point;
 
 //struct for three differnt coordinates: orgianl, after rotation, 2d coordinates
 typedef struct s_coord
 {
-	int				z;
-	t_mid_pixel		point;
-	t_mid_pixel		point_modified;
-	t_pixel			pixel;
+	int		z;
+	t_point	point;
+	t_point	point_modified;
+	t_pixel	pixel;
 }				t_coord;
 
 typedef struct s_pixel_max
@@ -78,9 +79,10 @@ typedef struct s_input
 {
 	int		z_inc;
 	float	scaler;
-	int		x_angle;
-	int		y_angle;
-	int		z_angle;
+	float	x_angle;
+	float	y_angle;
+	float	z_angle;
+	int		parallel_flag;
 	int		u_inc;
 	int		v_inc;
 }				t_input;
@@ -98,6 +100,7 @@ int		start_fdf(t_fdf *frame);
 //Manipulate the data for updating the 3d-/2d-/ coordinates
 t_input	*init_data(t_input *data);
 //Manipulate the map using hook
+// void	check_rotation(t_input *data, keys_t key);
 void	hook(t_fdf *frame);
 void	scroll_hook(double xdelta, double ydelta, t_fdf *frame);
 void	key_hook(mlx_key_data_t keydata, t_fdf *frame);
@@ -130,7 +133,7 @@ float	get_scale_rate(t_map *map);
 // t_coord	**update_coord(t_map *map, t_input *data);
 void	update_coord(t_map *map, t_input *data);
 //2.1.1 Scale the map
-// t_coord	**scale_map(t_coord **map, int *width, int *height, t_input *data);
+void	scale_map(t_map *map, t_input *data);
 //2.1.2 Rotation: update the 3d coordinates
 // t_coord	**rotate_map(t_coord **map, int *width, int *height, t_input *data);
 void	rotate_map(t_map *map, t_input *data);
@@ -144,10 +147,11 @@ void	rotate_map(t_map *map, t_input *data);
 void	draw_line(mlx_image_t *g_img, t_pixel p1, t_pixel p2);
 void	draw_line2(mlx_image_t *g_img, t_pixel p1, t_pixel p2);
 //3.3 Link all the points using draw_line
-//void	draw_map(mlx_image_t *g_img, t_coord **map, int *width, int *height);
+void	draw_map(mlx_image_t *g_img, t_map *map);
 //3.4 draw based on the data updated by hooks
 // t_coord	**draw(mlx_image_t *g_img, t_coord **map, int *width, int *height, t_input *data);
-void	draw(mlx_image_t *g_img, t_map *map, t_input *data);
+void	draw(mlx_image_t *g_img, t_map *map, t_input *data, keys_t key);
+void	draw_parallel(mlx_image_t *g_img, t_map *map, t_input *data, keys_t key);
 
 //error controlling
 void	err_msg(int i);
