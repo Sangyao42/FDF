@@ -18,6 +18,8 @@ SRCS = check_file.c\
 	   draw_parallel.c\
 	   hooks.c\
 	   fdf_utils.c\
+	   set_color_range.c\
+	   set_color.c\
 # OBJS = $(SRCS:.c=.o)
 HEADER = -I ../MLX42/include/MLX42/ -I ../GNL/src/
 LIBMLX = "../MLX42/"

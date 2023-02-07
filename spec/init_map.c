@@ -6,30 +6,55 @@
 /*   By: sawang <sawang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 16:19:53 by sawang            #+#    #+#             */
-/*   Updated: 2023/02/07 18:32:59 by sawang           ###   ########.fr       */
+/*   Updated: 2023/02/07 22:21:53 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	init_points(t_map *map)
+static void	init_points(t_map *map)
 {
 	int		i;
 	int		j;
-	float	center_x;
-	float	center_y;
 
-	center_x = (map->width) / 2;
-	center_y = (map->height) / 2;
 	j = 0;
 	while (j < map->height)
 	{
 		i = 0;
 		while (i < map->width)
 		{
-			(map->coords)[j][i].point.o = (float)i - center_x;
-			(map->coords)[j][i].point.p = (float)j - center_y;
+			(map->coords)[j][i].point.o = (float)i - (map->width) / 2;
+			(map->coords)[j][i].point.p = (float)j - (map->height) / 2;
 			(map->coords)[j][i].point.q = (float)(map->coords)[j][i].z;
+			i++;
+		}
+		j++;
+	}
+}
+
+static void	init_color(t_map *map)
+{
+	int		i;
+	int		j;
+	t_point	start;
+	t_point	end_pos;
+	t_point	end_neg;
+
+	start = set_base_color(map);
+	end_pos = get_max_z(*map);
+	end_neg = get_min_z(*map);
+	j = 0;
+	while (j < map->height)
+	{
+		i = 0;
+		while (i < map->width)
+		{
+			if ((map->coords)[j][i].point.q > 0)
+				(map->coords)[j][i].point.color = \
+					get_color((map->coords)[j][i].point, start, end_pos);
+			else
+				(map->coords)[j][i].point.color = \
+					get_color((map->coords)[j][i].point, start, end_neg);
 			i++;
 		}
 		j++;
@@ -78,6 +103,7 @@ static float	get_scale_rate(t_map *map)
 void	init_map(t_fdf *frame)
 {
 	init_points(&frame->map);
+	init_color(&frame->map);
 	proj_map(&frame->map);
 	frame->data.scaler = get_scale_rate(&frame->map);
 }

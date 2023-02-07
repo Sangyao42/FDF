@@ -6,7 +6,7 @@
 /*   By: sawang <sawang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 18:27:31 by sawang            #+#    #+#             */
-/*   Updated: 2023/02/07 18:27:39 by sawang           ###   ########.fr       */
+/*   Updated: 2023/02/07 22:20:31 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,16 +41,18 @@
 //Struct for pixel
 typedef struct s_pixel
 {
-	int32_t	u;
-	int32_t	v;
+	int32_t		u;
+	int32_t		v;
+	uint32_t	color;
 }				t_pixel;
 
 //struct for coordinates after calculate, eg: rotation
 typedef struct s_point
 {
-	float	o;
-	float	p;
-	float	q;
+	float		o;
+	float		p;
+	float		q;
+	uint32_t	color;
 }				t_point;
 
 //struct for three differnt coordinates: orgianl, after rotation, 2d coordinates
@@ -143,7 +145,6 @@ void	update_pixel(t_map *map, t_input *data);
 //void	fdf_put_pixel(mlx_image_t *img, uint32_t x, uint32_t y, uint32_t color);
 //3.2 Plotting line
 void	draw_line(mlx_image_t *g_img, t_pixel p1, t_pixel p2);
-void	draw_line2(mlx_image_t *g_img, t_pixel p1, t_pixel p2);
 //3.3 Link all the points using draw_line
 void	draw_map(mlx_image_t *g_img, t_map *map);
 //3.4 draw based on the data updated by hooks
@@ -152,6 +153,11 @@ void	draw(mlx_image_t *g_img, t_map *map, t_input *data, keys_t key);
 // 3.4.2 draw for parallel projection
 void	draw_parallel(\
 		mlx_image_t *g_img, t_map *map, t_input *data, keys_t key);
+//coloring
+t_point	get_max_z(t_map map);
+t_point	get_min_z(t_map map);
+t_point	set_base_color(t_map *map);
+int		get_color(t_point current, t_point start, t_point end);
 
 //error controlling
 void	err_msg(int i);

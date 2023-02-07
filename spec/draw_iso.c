@@ -6,7 +6,7 @@
 /*   By: sawang <sawang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 17:29:19 by sawang            #+#    #+#             */
-/*   Updated: 2023/02/07 17:30:15 by sawang           ###   ########.fr       */
+/*   Updated: 2023/02/07 22:13:04 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	draw_map(mlx_image_t *g_img, t_map *map)
 			draw_line(g_img, (map->coords)[j][i].pixel, \
 				(map->coords)[j + 1][i].pixel);
 			i++;
-			draw_line2(g_img, (map->coords)[j + 1][i].pixel, \
+			draw_line(g_img, (map->coords)[j + 1][i].pixel, \
 				(map->coords)[j][i].pixel);
 		}
 		j++;
@@ -36,7 +36,7 @@ void	draw_map(mlx_image_t *g_img, t_map *map)
 	i = 0;
 	while (i++ < (map->width - 1))
 	{
-		draw_line2(g_img, (map->coords)[j][i - 1].pixel, \
+		draw_line(g_img, (map->coords)[j][i - 1].pixel, \
 			(map->coords)[j][i].pixel);
 	}
 }
