@@ -6,24 +6,16 @@
 /*   By: sawang <sawang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 13:47:29 by sawang            #+#    #+#             */
-/*   Updated: 2023/02/06 21:01:07 by sawang           ###   ########.fr       */
+/*   Updated: 2023/02/07 17:05:53 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	quit(mlx_t *mlx, t_coord **map, int *height)
-{
-	free_map(map, *height);
-	mlx_close_window(mlx);
-	system("leaks main");
-	exit(EXIT_SUCCESS);
-}
-
 void	hook(t_fdf *frame)
 {
 	if (mlx_is_key_down(frame->mlx, MLX_KEY_ESCAPE))
-		quit(frame->mlx, frame->map.coords, &frame->map.height);
+		quit(frame);
 	if (mlx_is_key_down(frame->mlx, MLX_KEY_UP))
 		draw(frame->g_img, &frame->map, &frame->data, MLX_KEY_UP);
 	if (mlx_is_key_down(frame->mlx, MLX_KEY_DOWN))
@@ -72,9 +64,9 @@ void	scroll_hook(double xdelta, double ydelta, t_fdf *frame)
 void	key_hook(mlx_key_data_t keydata, t_fdf *frame)
 {
 	if (keydata.key == MLX_KEY_KP_ADD)
-		frame->data.z_inc += 1;
+		draw(frame->g_img, &frame->map, &frame->data, MLX_KEY_KP_ADD);
 	if (keydata.key == MLX_KEY_KP_SUBTRACT)
-		frame->data.z_inc -= 1;
+		draw(frame->g_img, &frame->map, &frame->data, MLX_KEY_KP_SUBTRACT);
 	if (keydata.key == MLX_KEY_I)
 		draw_parallel(frame->g_img, &frame->map, &frame->data, MLX_KEY_I);
 	if (keydata.key == MLX_KEY_O)

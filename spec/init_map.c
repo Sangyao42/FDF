@@ -6,13 +6,13 @@
 /*   By: sawang <sawang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 16:19:53 by sawang            #+#    #+#             */
-/*   Updated: 2023/02/04 21:20:33 by sawang           ###   ########.fr       */
+/*   Updated: 2023/02/07 18:32:59 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	center_map(t_map *map)
+void	init_points(t_map *map)
 {
 	int		i;
 	int		j;
@@ -58,12 +58,10 @@ static t_pixel_max	get_max(t_map map)
 		}
 		j++;
 	}
-	printf("u_max: %d\n", max.u_max);
-	printf("v_max: %d\n", max.v_max);
 	return (max);
 }
 
-float	get_scale_rate(t_map *map)
+static float	get_scale_rate(t_map *map)
 {
 	float		u_rate;
 	float		v_rate;
@@ -75,4 +73,11 @@ float	get_scale_rate(t_map *map)
 	if (u_rate < v_rate)
 		return (u_rate);
 	return (v_rate);
+}
+
+void	init_map(t_fdf *frame)
+{
+	init_points(&frame->map);
+	proj_map(&frame->map);
+	frame->data.scaler = get_scale_rate(&frame->map);
 }

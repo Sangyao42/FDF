@@ -6,7 +6,7 @@
 /*   By: sawang <sawang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 14:14:01 by sawang            #+#    #+#             */
-/*   Updated: 2023/02/06 19:53:00 by sawang           ###   ########.fr       */
+/*   Updated: 2023/02/07 17:24:47 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,25 +27,19 @@ t_input	*init_data(t_input *data)
 int	start_fdf(t_fdf *frame)
 {
 	(*frame).data = *init_data(&(*frame).data);
-	printf("test: %d", frame->data.u_inc);
 	(*frame).mlx = mlx_init(WIDTH, HEIGHT, "FDF_Sangyao", true);
 	if (!(*frame).mlx)
-	{
-		err_msg(5);
-		return (EXIT_FAILURE);
-	}
+		return (err_msg(5), EXIT_FAILURE);
 	(*frame).g_img = mlx_new_image((*frame).mlx, WIDTH, HEIGHT);
+	if (!(*frame).g_img)
+		return (err_msg(6), mlx_terminate(frame->mlx), EXIT_FAILURE);
 	mlx_image_to_window((*frame).mlx, (*frame).g_img, 0, 0);
-	center_map(&(frame->map));
-	proj_map(&(frame->map));
-	frame->data.scaler = get_scale_rate(&(frame->map));
+	init_map(frame);
 	draw(frame->g_img, &frame->map, &frame->data, 0);
 	mlx_scroll_hook(frame->mlx, (mlx_scrollfunc) scroll_hook, frame);
 	mlx_key_hook(frame->mlx, (mlx_keyfunc) key_hook, frame);
 	mlx_loop_hook((*frame).mlx, (void (*)(void *))hook, frame);
 	mlx_loop((*frame).mlx);
-	free_map((*frame).map.coords, (*frame).map.height);
-	mlx_delete_image((*frame).mlx, (*frame).g_img);
-	mlx_terminate((*frame).mlx);
+	quit(frame);
 	return (EXIT_SUCCESS);
 }

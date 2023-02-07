@@ -1,16 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_map.c                                         :+:      :+:    :+:   */
+/*   update_coords.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sawang <sawang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 16:40:33 by sawang            #+#    #+#             */
-/*   Updated: 2023/02/06 19:49:59 by sawang           ###   ########.fr       */
+/*   Updated: 2023/02/07 17:30:07 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+
+void	updata_data(t_input *data, keys_t key)
+{
+	if (key == MLX_KEY_KP_ADD)
+		data->z_inc += 1;
+	if (key == MLX_KEY_KP_SUBTRACT)
+		data->z_inc -= 1;
+	if (key == MLX_KEY_UP)
+		data->v_inc -= 10;
+	if (key == MLX_KEY_DOWN)
+		data->v_inc += 10;
+	if (key == MLX_KEY_LEFT)
+		data->u_inc -= 10;
+	if (key == MLX_KEY_RIGHT)
+		data->u_inc += 10;
+	if (key == MLX_KEY_Q)
+		data->x_angle += 1;
+	if (key == MLX_KEY_W)
+		data->x_angle -= 1;
+	if (key == MLX_KEY_A)
+		data->y_angle += 1;
+	if (key == MLX_KEY_S)
+		data->y_angle -= 1;
+	if (key == MLX_KEY_Z)
+		data->z_angle += 1;
+	if (key == MLX_KEY_X)
+		data->z_angle -= 1;
+}
 
 void	scale_map(t_map *map, t_input *data)
 {
@@ -66,66 +94,3 @@ void	update_pixel(t_map *map, t_input *data)
 		j++;
 	}
 }
-
-void	draw_map(mlx_image_t *g_img, t_map *map)
-{
-	int	i;
-	int	j;
-
-	j = 0;
-	while (j < (map->height - 1))
-	{
-		i = 0;
-		while (i < (map->width - 1))
-		{
-			draw_line(g_img, (map->coords)[j][i].pixel, \
-				(map->coords)[j][i + 1].pixel);
-			draw_line(g_img, (map->coords)[j][i].pixel, \
-				(map->coords)[j + 1][i].pixel);
-			i++;
-			draw_line2(g_img, (map->coords)[j + 1][i].pixel, \
-				(map->coords)[j][i].pixel);
-		}
-		j++;
-	}
-	i = 0;
-	while (i++ < (map->width - 1))
-	{
-		draw_line2(g_img, (map->coords)[j][i - 1].pixel, \
-			(map->coords)[j][i].pixel);
-	}
-}
-
-void	updata_data(t_input *data, keys_t key)
-{
-	if (key == MLX_KEY_UP)
-		data->v_inc -= 10;
-	if (key == MLX_KEY_DOWN)
-		data->v_inc += 10;
-	if (key == MLX_KEY_LEFT)
-		data->u_inc -= 10;
-	if (key == MLX_KEY_RIGHT)
-		data->u_inc += 10;
-	if (key == MLX_KEY_Q)
-		data->x_angle += 1;
-	if (key == MLX_KEY_W)
-		data->x_angle -= 1;
-	if (key == MLX_KEY_A)
-		data->y_angle += 1;
-	if (key == MLX_KEY_S)
-		data->y_angle -= 1;
-	if (key == MLX_KEY_Z)
-		data->z_angle += 1;
-	if (key == MLX_KEY_X)
-		data->z_angle -= 1;
-}
-
-void	draw(mlx_image_t *g_img, t_map *map, t_input *data, keys_t key)
-{
-	updata_data(data, key);
-	memset(g_img->pixels, 0, g_img->width * g_img->height * sizeof(int));
-	update_coord(map, data);
-	update_pixel(map, data);
-	draw_map(g_img, map);
-}
-

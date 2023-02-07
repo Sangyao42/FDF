@@ -6,7 +6,7 @@
 /*   By: sawang <sawang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 15:52:53 by sawang            #+#    #+#             */
-/*   Updated: 2023/02/04 17:39:52 by sawang           ###   ########.fr       */
+/*   Updated: 2023/02/07 17:06:18 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,79 +76,3 @@ t_coord	**get_map(int fd, int *width, int *height)
 	}
 	return (map);
 }
-
-// int	get_map(int fd, int ***map)
-// {
-// 	char			*str;
-// 	unsigned int	width;
-// 	int				*line;
-// 	unsigned int	height;
-
-// 	str = get_next_line(fd);
-// 	if (str)
-// 	{
-// 		width = get_width(str);
-// 		height = 0;
-// 	}
-// 	while (str)
-// 	{
-// 		if (get_width(str) != width)
-// 			return (free(str), free_map(*map, height), -1);
-// 		line = get_int_array(str, width);
-// 		if (!line)
-// 			return (free(str), free_map(*map, height), -1);
-// 		*map = new_map(*map, line, height++);
-// 		if (!*map)
-// 			return (free(str), -1);
-// 		free(str);
-// 		str = get_next_line(fd);
-// 	}
-// 	return (height);
-// }
-
-// void	free_map(t_linelist *map)
-// {
-// 	t_linelist	*current;
-
-// 	if (!map)
-// 		return ;
-// 	current = map;
-// 	while (current)
-// 	{
-// 		current = current->next;
-// 		free((map)->line_array);
-// 		free(map);
-// 		map = current;
-// 	}
-// 	map = NULL;
-// 	return ;
-// }
-// int	**new_map(int **map, int *line, unsigned int height)
-// {
-// 	int				**temp;
-// 	unsigned int	j;
-
-// 	if (!map && height == 1)
-// 	{
-// 		map = malloc(height * sizeof(int **));
-// 		if (!map)
-// 			return (free(line), NULL);
-// 		*map = line;
-// 	}
-// 	else
-// 	{
-// 		temp = map;
-// 		free_map(map);
-// 		map = malloc(height * sizeof(int **));
-// 		if (!map)
-// 			return (free(line), NULL);
-// 		j = 1;
-// 		while (j < height)
-// 		{
-// 			*(map + j) = *(temp + j);
-// 			j++;
-// 		}
-// 		*(map + j) = line;
-// 	}
-// 	return (map);
-// }

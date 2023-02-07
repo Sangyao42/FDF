@@ -5,18 +5,19 @@ CFLAGS =  -Wall -Werror -Wextra
 BS = -D BUFERSIZE=100
 FRAMEWORK = -framework Cocoa -framework OpenGL -framework IOKit
 TEST = main.c
-SRCS = iso_proj.c\
-       draw_line.c\
-	   get_map.c\
+SRCS = check_file.c\
 	   parser.c\
-	   draw_map.c\
-	   init_map.c\
-	   rotate_map.c\
-	   error_cntl.c\
-	   file_is_valid.c\
+	   get_map.c\
 	   start_fdf.c\
-	   hooks.c\
+	   init_map.c\
+	   update_coords.c\
+	   rotate_map.c\
+	   iso_proj.c\
+       draw_line.c\
+	   draw_iso.c\
 	   draw_parallel.c\
+	   hooks.c\
+	   fdf_utils.c\
 # OBJS = $(SRCS:.c=.o)
 HEADER = -I ../MLX42/include/MLX42/ -I ../GNL/src/
 LIBMLX = "../MLX42/"

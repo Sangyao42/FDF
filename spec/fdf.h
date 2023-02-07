@@ -6,7 +6,7 @@
 /*   By: sawang <sawang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 18:27:31 by sawang            #+#    #+#             */
-/*   Updated: 2023/02/06 21:00:52 by sawang           ###   ########.fr       */
+/*   Updated: 2023/02/07 18:27:39 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@
 # include <stdbool.h>
 # include <errno.h>
 # include <unistd.h>
-#include <stdlib.h>
+# include <stdlib.h>
 
 //Struct for pixel
 typedef struct s_pixel
@@ -106,7 +106,7 @@ void	scroll_hook(double xdelta, double ydelta, t_fdf *frame);
 void	key_hook(mlx_key_data_t keydata, t_fdf *frame);
 
 // check if file is valid
-bool	file_is_valid(char *str);
+int		check_file(int argc, char **argv);
 
 //Parser for every line in the fdf line
 int		get_width(char *str);
@@ -117,29 +117,27 @@ void	free_map(t_coord **map, int height);
 
 //Transfered the map into 3d and later 2d arrays, steps would be:
 //1. For the first draw:
+// 1.0 Get the initial map for first draw
+void	init_map(t_fdf *frame);
 //1.1 Centering the map
-void	center_map(t_map *map);
+// static void	init_points(t_map *map);
 //1.2 Isometric Projection -- project the map for the first time
 void	proj_map(t_map *map);
 // 1.3. scaling the map to draw inside the window, get the scale rate
 // after the projection, which updates the 2d coordinates value,
 // but apply the rate to update the 3d coordinates for a new projection
 // before the final draw.
-// float	get_scale_rate(t_coord **map, int *width, int *height);
-float	get_scale_rate(t_map *map);
+// static float	get_scale_rate(t_map *map);
 //2. For the rendering:
-//2.1 Update the 3d coordinates:
-// t_coord	**update_coord(t_coord **map, int *width, int *height, t_input *data);
-// t_coord	**update_coord(t_map *map, t_input *data);
+void	updata_data(t_input *data, keys_t key);
+//2.2 Update the 3d coordinates:
 void	update_coord(t_map *map, t_input *data);
-//2.1.1 Scale the map
+//2.2.1 Scale the map
 void	scale_map(t_map *map, t_input *data);
-//2.1.2 Rotation: update the 3d coordinates
-// t_coord	**rotate_map(t_coord **map, int *width, int *height, t_input *data);
+//2.2.2 Rotation: update the 3d coordinates
 void	rotate_map(t_map *map, t_input *data);
-// 2.2 Update the 2d coordinates:
-// void	update_pixel(t_coord **map, int *width, int	*height, t_input *data);
-
+// 2.3 Update the 2d coordinates:
+void	update_pixel(t_map *map, t_input *data);
 // 3. draw whole map
 // 3.1 Write my own put pixel function to avoid segfault
 //void	fdf_put_pixel(mlx_image_t *img, uint32_t x, uint32_t y, uint32_t color);
@@ -149,11 +147,17 @@ void	draw_line2(mlx_image_t *g_img, t_pixel p1, t_pixel p2);
 //3.3 Link all the points using draw_line
 void	draw_map(mlx_image_t *g_img, t_map *map);
 //3.4 draw based on the data updated by hooks
-// t_coord	**draw(mlx_image_t *g_img, t_coord **map, int *width, int *height, t_input *data);
+// 3.4.1 draw for isometric projection
 void	draw(mlx_image_t *g_img, t_map *map, t_input *data, keys_t key);
-void	draw_parallel(mlx_image_t *g_img, t_map *map, t_input *data, keys_t key);
+// 3.4.2 draw for parallel projection
+void	draw_parallel(\
+		mlx_image_t *g_img, t_map *map, t_input *data, keys_t key);
 
 //error controlling
 void	err_msg(int i);
+//quit successfully
+void	quit(t_fdf *frame);
+//memset
+void	*fdf_memset(void *b, int c, size_t len);
 
 #endif
