@@ -6,7 +6,7 @@
 /*   By: sawang <sawang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 16:19:53 by sawang            #+#    #+#             */
-/*   Updated: 2023/02/07 22:21:53 by sawang           ###   ########.fr       */
+/*   Updated: 2023/02/08 21:47:45 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,9 @@ static void	init_color(t_map *map)
 {
 	int		i;
 	int		j;
-	t_point	start;
-	t_point	end_pos;
-	t_point	end_neg;
+	t_coord	start;
+	t_coord	end_pos;
+	t_coord	end_neg;
 
 	start = set_base_color(map);
 	end_pos = get_max_z(*map);
@@ -49,12 +49,12 @@ static void	init_color(t_map *map)
 		i = 0;
 		while (i < map->width)
 		{
-			if ((map->coords)[j][i].point.q > 0)
-				(map->coords)[j][i].point.color = \
-					get_color((map->coords)[j][i].point, start, end_pos);
-			else
-				(map->coords)[j][i].point.color = \
-					get_color((map->coords)[j][i].point, start, end_neg);
+			if ((map->coords)[j][i].point.q > start.point.q)
+				(map->coords)[j][i].color = \
+					set_color((map->coords)[j][i], start, end_pos);
+			else if ((map->coords)[j][i].point.q < start.point.q)
+				(map->coords)[j][i].color = \
+					set_color((map->coords)[j][i], end_neg, start);
 			i++;
 		}
 		j++;
@@ -103,7 +103,22 @@ static float	get_scale_rate(t_map *map)
 void	init_map(t_fdf *frame)
 {
 	init_points(&frame->map);
+	printf("map _ color : %0x", frame->map.coords[0][0].color);
 	init_color(&frame->map);
 	proj_map(&frame->map);
 	frame->data.scaler = get_scale_rate(&frame->map);
+	// int	i;
+	// int	j;
+
+	// j = 0;
+	// while (j < frame->map.height)
+	// {
+	// 	i = 0;
+	// 	while (i < frame->map.width)
+	// 	{
+	// 		printf("initial color[%d][%d]: %0x\n", j, i, frame->map.coords[j][i].color);
+	// 		i++;
+	// 	}
+	// 	j++;
+	// }
 }

@@ -6,7 +6,7 @@
 /*   By: sawang <sawang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 18:27:31 by sawang            #+#    #+#             */
-/*   Updated: 2023/02/07 22:20:31 by sawang           ###   ########.fr       */
+/*   Updated: 2023/02/08 19:38:46 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ typedef struct s_pixel
 {
 	int32_t		u;
 	int32_t		v;
-	uint32_t	color;
 }				t_pixel;
 
 //struct for coordinates after calculate, eg: rotation
@@ -52,16 +51,16 @@ typedef struct s_point
 	float		o;
 	float		p;
 	float		q;
-	uint32_t	color;
 }				t_point;
 
 //struct for three differnt coordinates: orgianl, after rotation, 2d coordinates
 typedef struct s_coord
 {
-	int		z;
-	t_point	point;
-	t_point	point_modified;
-	t_pixel	pixel;
+	int			z;
+	t_point		point;
+	t_point		point_modified;
+	t_pixel		pixel;
+	uint32_t	color;
 }				t_coord;
 
 typedef struct s_pixel_max
@@ -97,6 +96,15 @@ typedef struct s_fdf
 	t_input		data;
 }				t_fdf;
 
+typedef	struct s_delta
+{
+	int	dx;
+	int	dy;
+	int	xi;
+	int	yi;
+	int	p;
+	int sign;
+}				t_delta;
 //Call the mlx functions
 int		start_fdf(t_fdf *frame);
 //Manipulate the data for updating the 3d-/2d-/ coordinates
@@ -144,7 +152,8 @@ void	update_pixel(t_map *map, t_input *data);
 // 3.1 Write my own put pixel function to avoid segfault
 //void	fdf_put_pixel(mlx_image_t *img, uint32_t x, uint32_t y, uint32_t color);
 //3.2 Plotting line
-void	draw_line(mlx_image_t *g_img, t_pixel p1, t_pixel p2);
+// void	draw_line(mlx_image_t *g_img, t_pixel p1, t_pixel p2);
+void	draw_line(mlx_image_t *g_img, t_coord p1, t_coord p2);
 //3.3 Link all the points using draw_line
 void	draw_map(mlx_image_t *g_img, t_map *map);
 //3.4 draw based on the data updated by hooks
@@ -154,10 +163,11 @@ void	draw(mlx_image_t *g_img, t_map *map, t_input *data, keys_t key);
 void	draw_parallel(\
 		mlx_image_t *g_img, t_map *map, t_input *data, keys_t key);
 //coloring
-t_point	get_max_z(t_map map);
-t_point	get_min_z(t_map map);
-t_point	set_base_color(t_map *map);
-int		get_color(t_point current, t_point start, t_point end);
+t_coord	get_max_z(t_map map);
+t_coord	get_min_z(t_map map);
+t_coord	set_base_color(t_map *map);
+int		set_color(t_coord current, t_coord start, t_coord end);
+int		get_color(t_coord current, t_coord start, t_coord end, int sign);
 
 //error controlling
 void	err_msg(int i);

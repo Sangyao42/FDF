@@ -6,7 +6,7 @@
 /*   By: sawang <sawang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 17:29:19 by sawang            #+#    #+#             */
-/*   Updated: 2023/02/07 22:13:04 by sawang           ###   ########.fr       */
+/*   Updated: 2023/02/08 13:45:12 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,21 +23,21 @@ void	draw_map(mlx_image_t *g_img, t_map *map)
 		i = 0;
 		while (i < (map->width - 1))
 		{
-			draw_line(g_img, (map->coords)[j][i].pixel, \
-				(map->coords)[j][i + 1].pixel);
-			draw_line(g_img, (map->coords)[j][i].pixel, \
-				(map->coords)[j + 1][i].pixel);
+			draw_line(g_img, (map->coords)[j][i], \
+				(map->coords)[j][i + 1]);
+			draw_line(g_img, (map->coords)[j][i], \
+				(map->coords)[j + 1][i]);
 			i++;
-			draw_line(g_img, (map->coords)[j + 1][i].pixel, \
-				(map->coords)[j][i].pixel);
+			draw_line(g_img, (map->coords)[j + 1][i], \
+				(map->coords)[j][i]);
 		}
 		j++;
 	}
 	i = 0;
 	while (i++ < (map->width - 1))
 	{
-		draw_line(g_img, (map->coords)[j][i - 1].pixel, \
-			(map->coords)[j][i].pixel);
+		draw_line(g_img, (map->coords)[j][i - 1], \
+			(map->coords)[j][i]);
 	}
 }
 
