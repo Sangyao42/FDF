@@ -1,6 +1,6 @@
 NAME = $(TEST:.c=.o)
 CC = gcc
-# CFLAGS =  -Wall -Werror -Wextra
+CFLAGS =  -Wall -Werror -Wextra
 # CFLAGS += -fsanitize=address -g3
 CFLAGS += -march=nocona -flto -Ofast
 BS = -D BUFERSIZE=100

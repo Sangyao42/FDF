@@ -6,7 +6,7 @@
 /*   By: sawang <sawang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 18:27:31 by sawang            #+#    #+#             */
-/*   Updated: 2023/02/08 19:38:46 by sawang           ###   ########.fr       */
+/*   Updated: 2023/02/09 15:59:06 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ typedef	struct s_delta
 	int	xi;
 	int	yi;
 	int	p;
-	int sign;
+	int	sign;
 }				t_delta;
 //Call the mlx functions
 int		start_fdf(t_fdf *frame);

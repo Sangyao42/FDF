@@ -6,7 +6,7 @@
 /*   By: sawang <sawang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 16:49:59 by sawang            #+#    #+#             */
-/*   Updated: 2023/02/08 15:01:37 by sawang           ###   ########.fr       */
+/*   Updated: 2023/02/09 15:55:04 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	quit(t_fdf *frame)
 	free_map(frame->map.coords, frame->map.height);
 	mlx_delete_image((*frame).mlx, (*frame).g_img);
 	mlx_terminate((*frame).mlx);
-	// system("leaks main");
+	system("leaks main");
 	exit(EXIT_SUCCESS);
 }
 

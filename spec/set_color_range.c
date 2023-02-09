@@ -6,7 +6,7 @@
 /*   By: sawang <sawang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 22:06:28 by sawang            #+#    #+#             */
-/*   Updated: 2023/02/08 21:49:33 by sawang           ###   ########.fr       */
+/*   Updated: 2023/02/09 16:04:43 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,6 @@ t_coord	set_base_color(t_map *map)
 	t_coord	z_mid;
 
 	z_mid = get_mid_z(*map);
-	printf("z_mid; %f\n", z_mid.point.q);
 	j = 0;
 	while (j < map->height)
 	{

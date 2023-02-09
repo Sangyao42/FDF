@@ -6,7 +6,7 @@
 /*   By: sawang <sawang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 19:01:00 by sawang            #+#    #+#             */
-/*   Updated: 2023/02/08 22:25:34 by sawang           ###   ########.fr       */
+/*   Updated: 2023/02/09 15:53:37 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,11 @@ static double	percent(float start, float end, float current)
 	if (distance == 0)
 		return (1.0);
 	else
-	{
-		// printf("percent:%f", (placement/ distance));
 		return (placement / distance);
-	}
 }
 
 static int	get_light(int start, int end, double percentage)
 {
-	// printf("get_light: %0x\n", (int)((1 - percentage) * start + percentage * end));
 	return ((int)((1 - percentage) * start + percentage * end));
 }
 
@@ -66,8 +62,11 @@ int	get_color(t_coord current, t_coord start, t_coord end, int sign)
 		percentage = percent(start.pixel.u, end.pixel.u, current.pixel.u);
 	else
 		percentage = percent(start.pixel.v, end.pixel.v, current.pixel.v);
-	red = get_light((start.color >> 24) & 0xFF, (end.color >> 24) & 0xFF, percentage);
-	green = get_light((start.color >> 16) & 0xFF, (end.color >> 16) & 0xFF, percentage);
-	blue = get_light((start.color >> 8) & 0xFF, (end.color >> 8) & 0xFF, percentage);
+	red = get_light((start.color >> 24) & 0xFF, \
+		(end.color >> 24) & 0xFF, percentage);
+	green = get_light((start.color >> 16) & 0xFF, \
+		(end.color >> 16) & 0xFF, percentage);
+	blue = get_light((start.color >> 8) & 0xFF, \
+		(end.color >> 8) & 0xFF, percentage);
 	return ((red << 24) | (green << 16) | (blue << 8)| 0xFF);
 }
