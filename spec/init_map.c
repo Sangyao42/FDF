@@ -6,7 +6,7 @@
 /*   By: sawang <sawang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 16:19:53 by sawang            #+#    #+#             */
-/*   Updated: 2023/02/09 15:54:00 by sawang           ###   ########.fr       */
+/*   Updated: 2023/02/09 17:02:00 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void	init_points(t_map *map)
 		{
 			(map->coords)[j][i].point.o = (float)i - (map->width) / 2;
 			(map->coords)[j][i].point.p = (float)j - (map->height) / 2;
-			(map->coords)[j][i].point.q = (float)(map->coords)[j][i].z;
+			(map->coords)[j][i].point.q = (float)(map->coords)[j][i].z / 10;
 			i++;
 		}
 		j++;

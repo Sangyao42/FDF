@@ -6,7 +6,7 @@
 /*   By: sawang <sawang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 16:40:33 by sawang            #+#    #+#             */
-/*   Updated: 2023/02/08 13:24:04 by sawang           ###   ########.fr       */
+/*   Updated: 2023/02/09 17:01:55 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	scale_map(t_map *map, t_input *data)
 			(map->coords)[j][i].point_modified.p = \
 				(map->coords)[j][i].point.p * data->scaler;
 			(map->coords)[j][i].point_modified.q = \
-				((map->coords)[j][i].point.q * data->z_inc / 10) * data->scaler;
+				((map->coords)[j][i].point.q * data->z_inc) * data->scaler;
 			i++;
 		}
 		j++;
