@@ -40,15 +40,11 @@ clean:
 	rm -f $(OBJS)
 #	make fclean -C ../MLX42/
 	make fclean -C ../GNL/
-#	make fclean -C ../Libft/
 
 fclean: clean
 	rm -f $(NAME)
 
 re: fclean all
-
-# libft:
-# 	make -C ../Libft/
 
 libgnl:
 	make -C ../GNL/
