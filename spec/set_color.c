@@ -6,7 +6,7 @@
 /*   By: sawang <sawang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 19:01:00 by sawang            #+#    #+#             */
-/*   Updated: 2023/02/09 15:53:37 by sawang           ###   ########.fr       */
+/*   Updated: 2023/02/10 16:04:56 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,5 +68,5 @@ int	get_color(t_coord current, t_coord start, t_coord end, int sign)
 		(end.color >> 16) & 0xFF, percentage);
 	blue = get_light((start.color >> 8) & 0xFF, \
 		(end.color >> 8) & 0xFF, percentage);
-	return ((red << 24) | (green << 16) | (blue << 8)| 0xFF);
+	return ((red << 24) | (green << 16) | (blue << 8) | 0xFF);
 }

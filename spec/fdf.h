@@ -6,7 +6,7 @@
 /*   By: sawang <sawang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 18:27:31 by sawang            #+#    #+#             */
-/*   Updated: 2023/02/09 15:59:06 by sawang           ###   ########.fr       */
+/*   Updated: 2023/02/10 16:11:03 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,12 @@
 # include <fcntl.h>
 # include "MLX42.h"
 # include "get_next_line.h"
-# include <stdio.h>
 # include <string.h>
 # include <stdbool.h>
 # include <errno.h>
 # include <unistd.h>
 # include <stdlib.h>
+# include <stdio.h>
 
 //Struct for pixel
 typedef struct s_pixel
@@ -96,7 +96,7 @@ typedef struct s_fdf
 	t_input		data;
 }				t_fdf;
 
-typedef	struct s_delta
+typedef struct s_delta
 {
 	int	dx;
 	int	dy;

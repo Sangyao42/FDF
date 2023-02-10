@@ -6,7 +6,7 @@
 /*   By: sawang <sawang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 22:06:28 by sawang            #+#    #+#             */
-/*   Updated: 2023/02/09 16:04:43 by sawang           ###   ########.fr       */
+/*   Updated: 2023/02/10 16:02:06 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ t_coord	get_mid_z(t_map map)
 		}
 		j++;
 	}
+	printf("z_mid: %f\t", z_mid.point.q);
 	return (z_mid);
 }
 
@@ -54,6 +55,7 @@ t_coord	get_max_z(t_map map)
 		j++;
 	}
 	z_max.color = 0xFFFF00FF;
+	printf("z_max: %f\t", z_max.point.q);
 	return (z_max);
 }
 
@@ -70,13 +72,14 @@ t_coord	get_min_z(t_map map)
 		i = 0;
 		while (i < map.width)
 		{
-			if ((map.coords[j][i].point.q) < z_min.point.o)
+			if ((map.coords[j][i].point.q) < z_min.point.q)
 				z_min = map.coords[j][i];
 			i++;
 		}
 		j++;
 	}
 	z_min.color = 0x00FFFFFF;
+	printf("z_min: %f\t", z_min.point.q);
 	return (z_min);
 }
 

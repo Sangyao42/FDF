@@ -6,7 +6,7 @@
 /*   By: sawang <sawang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 18:05:09 by sawang            #+#    #+#             */
-/*   Updated: 2023/02/07 17:10:06 by sawang           ###   ########.fr       */
+/*   Updated: 2023/02/10 15:45:56 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	pixel_parallel_x(t_map *map)
 			(map->coords)[j][i].pixel.u = \
 				(map->coords)[j][i].point_modified.p + WIDTH / 2;
 			(map->coords)[j][i].pixel.v = \
-				(map->coords)[j][i].point_modified.q + HEIGHT / 2;
+				-(map->coords)[j][i].point_modified.q + HEIGHT / 2;
 			i++;
 		}
 		j++;
@@ -47,7 +47,7 @@ static void	pixel_parallel_y(t_map *map)
 			(map->coords)[j][i].pixel.u = \
 				(map->coords)[j][i].point_modified.o + WIDTH / 2;
 			(map->coords)[j][i].pixel.v = \
-				(map->coords)[j][i].point_modified.q + HEIGHT / 2;
+				-(map->coords)[j][i].point_modified.q + HEIGHT / 2;
 			i++;
 		}
 		j++;
