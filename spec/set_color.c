@@ -6,7 +6,7 @@
 /*   By: sawang <sawang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 19:01:00 by sawang            #+#    #+#             */
-/*   Updated: 2023/02/10 16:04:56 by sawang           ###   ########.fr       */
+/*   Updated: 2023/02/10 16:25:28 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ static double	percent(float start, float end, float current)
 		return (placement / distance);
 }
 
-static int	get_light(int start, int end, double percentage)
+static int	get_light(int start_color, int end_color, double percentage)
 {
-	return ((int)((1 - percentage) * start + percentage * end));
+	return ((int)((1 - percentage) * start_color + percentage * end_color));
 }
 
 int	set_color(t_coord current, t_coord start, t_coord end)
