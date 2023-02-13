@@ -6,7 +6,7 @@
 /*   By: sawang <sawang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 19:30:46 by sawang            #+#    #+#             */
-/*   Updated: 2023/02/13 10:54:49 by sawang           ###   ########.fr       */
+/*   Updated: 2023/02/13 11:10:03 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,12 @@ static void	fdf_put_pixel(mlx_image_t *img, t_pixel pixel, uint32_t color)
 		mlx_put_pixel(img, pixel.u, pixel.v, color);
 }
 
-static void	drawlinelow(mlx_image_t *g_img, t_coord p1, t_coord p2, t_delta delta)
+static void	drawlinelow(mlx_image_t *g_img, t_coord p1, t_coord p2, \
+	t_delta delta)
 {
-	// t_delta		delta;
-	t_coord		start;
+	t_coord	start;
 
 	start = p1;
-	// delta.dy = p2.pixel.v - p1.pixel.v;
-	// delta.dx = p2.pixel.u - p1.pixel.u;
 	delta.yi = 1;
 	if (delta.dy < 0)
 	{
@@ -48,14 +46,12 @@ static void	drawlinelow(mlx_image_t *g_img, t_coord p1, t_coord p2, t_delta delt
 	}
 }
 
-static void	drawlinehigh(mlx_image_t *g_img, t_coord p1, t_coord p2, t_delta delta)
+static void	drawlinehigh(mlx_image_t *g_img, t_coord p1, t_coord p2, \
+	t_delta delta)
 {
-	// t_delta		delta;
-	t_coord		start;
+	t_coord	start;
 
 	start = p1;
-	// delta.dy = p2.pixel.v - p1.pixel.v;
-	// delta.dx = p2.pixel.u - p1.pixel.u;
 	delta.xi = 1;
 	if (delta.dx < 0)
 	{
