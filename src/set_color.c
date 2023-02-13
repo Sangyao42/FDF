@@ -6,7 +6,7 @@
 /*   By: sawang <sawang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 19:01:00 by sawang            #+#    #+#             */
-/*   Updated: 2023/02/10 16:25:28 by sawang           ###   ########.fr       */
+/*   Updated: 2023/02/13 10:56:05 by sawang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	set_color(t_coord current, t_coord start, t_coord end)
 	return ((red << 24) | (green << 16) | (blue << 8) | 0xFF);
 }
 
-int	get_color(t_coord current, t_coord start, t_coord end, int sign)
+int	get_color(t_coord current, t_coord start, t_coord end, t_delta delta)
 {
 	int		red;
 	int		green;
@@ -58,7 +58,7 @@ int	get_color(t_coord current, t_coord start, t_coord end, int sign)
 
 	if (current.color == end.color)
 		return (current.color);
-	if (sign == 1)
+	if (delta.dx > delta.dy)
 		percentage = percent(start.pixel.u, end.pixel.u, current.pixel.u);
 	else
 		percentage = percent(start.pixel.v, end.pixel.v, current.pixel.v);
