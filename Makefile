@@ -35,7 +35,7 @@ $(NAME):  libmlx42 libgnl
 
 clean:
 	rm -f $(OBJS)
-#	make fclean -C ../MLX42/
+#	make fclean -C ./lib/MLX42/
 	make fclean -C ./lib/GNL/
 
 fclean: clean
